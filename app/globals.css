@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
+/* ============================================
+   aiprobaj — dizajn tokeni (tamna baza + lime akcent)
+   ============================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --bg: #08080a;
+  --bg2: #0f0f14;
+  --bg3: #16161c;
+  --line: rgba(255, 255, 255, 0.1);
+  --line2: rgba(255, 255, 255, 0.17);
+  --ink: #f4f4ef;
+  /* Kontrast podignut vs original (audit P0/P1: .60 -> .66, .40 -> .52) */
+  --ink-mut: rgba(244, 244, 239, 0.66);
+  --ink-dim: rgba(244, 244, 239, 0.52);
+  --accent: #c6ff3a;
+  --accent-ink: #0a0a0a;
+  --hot: #ff5c35;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 86px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Placeholder kontrast (audit P0-A: .32 -> .50) */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(244, 244, 239, 0.5);
+}
+
+@keyframes aip-marq {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes aip-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.72); }
+}
+@keyframes aip-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Postuj prefers-reduced-motion (audit P0-D) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── MOBILNI NAV ─────────────────────────────────────────
+   Ispod 720px: sakrij desktop linkove, prikaži hamburger
+   ─────────────────────────────────────────────────────── */
+@media (max-width: 719px) {
+  .desktop-nav-links {
+    display: none !important;
+  }
+  .mobile-hamburger {
+    display: flex !important;
+  }
+}
+
+/* ── FAQ — details/summary ───────────────────────────────
+   Maknuti native browser trokut; plus/minus via pseudo
+   ─────────────────────────────────────────────────────── */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Plus kad zatvoreno */
+.faq-indicator::before {
+  content: "+";
+}
+/* Minus kad otvoreno */
+details[open] .faq-indicator::before {
+  content: "–";
+  color: var(--accent);
+}
+
+/* Hover na summary */
+details > summary:hover {
+  color: var(--accent);
+}
+
+/* ── PREDAVAČI — initials fallback ────────────────────────
+   Inicijali su iza slike (z-index: -1). Ako next/image ne
+   može učitati sliku, slika ne blokira inicijale.
+   ─────────────────────────────────────────────────────── */
+.instructor-initials {
+  z-index: 0;
+}
+
+/* ── AGENDA — hover efekt (CSS, bez JS) ────────────────── */
+@media (hover: hover) {
+  /* Program rows */
+  .pillar-row:hover,
+  .agenda-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
 }

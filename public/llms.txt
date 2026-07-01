@@ -1,0 +1,29 @@
+# aiprobaj.com
+
+aiprobaj.com je edukativna platforma za ucenje AI-a na hrvatskom jeziku.
+
+## Webinar
+
+Besplatni online AI webinar, uzivo putem Zooma.
+Organizatori: Fraviz Studio (Ivan Bobanovic) i SEO Lick (Ivan Radica, 10+ god SEO iskustva).
+Termin: 22. srpnja 2026., 19:00h (CEST).
+Trajanje: oko 90 minuta + Q&A.
+Cijena: besplatno.
+Prijava: https://aiprobaj.com/#prijava
+
+## Teme webinara
+
+1. Sto je AI, bez zargona (AI osnove, alati, mindset)
+2. Rad s AI-em od basic do napredno (prompting, workflowovi, praksa)
+3. AI arhitektura (automatizacije, agenti, integracije)
+4. SEO, AEO i GEO uz AI (klasicni SEO, Answer Engine i Generative Engine optimizacija)
+5. Sigurnost u doba AI-a (zastita, privatnost, rizici)
+
+## FAQ
+
+- Trebam li predznanje? Ne. Krecemo od nule.
+- Je li besplatno? Da, potpuno.
+- Gdje se odrzava? Online, Zoom. Link stize na email.
+- Dobivam li snimku? Da, svi prijavljeni.
+- Koliko traje? Oko 90 minuta + Q&A.
+- Za koga je? Za sve, od pocetnika do naprednih, poduzetnike, marketingase i developere.
