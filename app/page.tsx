@@ -947,7 +947,7 @@ export default function Page() {
                 color: "var(--ink)",
               }}
             >
-              Uče te ljudi koji AI koriste svaki dan
+              Uče te ljudi koje klijenti plaćaju za AI
             </h2>
             <p
               style={{
@@ -957,14 +957,14 @@ export default function Page() {
                 color: "var(--ink-mut)",
               }}
             >
-              Ne teoretičari: praktičari koji AI-em vode stvarne projekte i tvrtke.
+              Sve što predaju već su isporučili klijentima, ti to samo primjenjuješ brže.
             </p>
           </div>
 
           <div
             style={{
               marginTop: 44,
-              maxWidth: 640,
+              maxWidth: 980,
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: 18,
@@ -1007,25 +1007,6 @@ export default function Page() {
                       sizes="74px"
                       style={{ objectFit: "cover" }}
                     />
-                    {/* Initials shown when image missing — hidden by CSS once image loads */}
-                    <span
-                      aria-hidden="true"
-                      className="instructor-initials"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontFamily: GROTESK,
-                        fontWeight: 700,
-                        fontSize: 22,
-                        color: "var(--ink-mut)",
-                        zIndex: -1,
-                      }}
-                    >
-                      {instructor.initials}
-                    </span>
                   </div>
 
                   <div>

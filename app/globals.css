@@ -110,14 +110,6 @@ details > summary:hover {
   color: var(--accent);
 }
 
-/* ── PREDAVAČI — initials fallback ────────────────────────
-   Inicijali su iza slike (z-index: -1). Ako next/image ne
-   može učitati sliku, slika ne blokira inicijale.
-   ─────────────────────────────────────────────────────── */
-.instructor-initials {
-  z-index: 0;
-}
-
 /* ── AGENDA — hover efekt (CSS, bez JS) ────────────────── */
 @media (hover: hover) {
   /* Program rows */
