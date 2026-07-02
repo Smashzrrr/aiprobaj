@@ -41,13 +41,11 @@ export const metadata: Metadata = {
     title: "Besplatni AI webinar na hrvatskom | aiprobaj.com",
     description:
       "Nauči raditi s AI-em od praktičara. Pet područja u jednom webinaru. Prijavi se, mjesta su ograničena.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "aiprobaj AI webinar" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Besplatni AI webinar na hrvatskom | aiprobaj.com",
     description: "Nauči raditi s AI-em od praktičara. Pet područja u jednom webinaru.",
-    images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -70,7 +68,7 @@ const jsonLd = {
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
       location: { "@type": "VirtualLocation", url: SITE },
-      image: [`${SITE}/og-image.png`],
+      image: [`${SITE}/opengraph-image`],
       organizer: [
         { "@type": "Organization", name: "Fraviz Studio", url: "https://fraviz.com" },
         { "@type": "Organization", name: "SEO Lick" },
@@ -78,6 +76,7 @@ const jsonLd = {
       performer: [
         { "@type": "Person", name: "Ivan Bobanović" },
         { "@type": "Person", name: "Ivan Radica" },
+        { "@type": "Person", name: "Marko Smolčić Uzunović" },
       ],
       offers: {
         "@type": "Offer",
