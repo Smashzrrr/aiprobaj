@@ -74,10 +74,12 @@ export default function Privatnost() {
       <p style={P}>
         Podatke ne prodajemo i ne dijelimo s trećima u marketinške svrhe.
         Koristimo pouzdane obrađivače isključivo za tehničku isporuku: Supabase
-        (pohrana podataka, poslužitelji u EU) i Resend (slanje email poruka).
-        Resend je američka tvrtka, pa se prijenos podataka izvan EU odvija na
-        temelju EU-US Data Privacy Framework, odnosno standardnih ugovornih
-        klauzula. Pristup imaju samo Fraviz Studio i SEO Lick kao organizatori.
+        (pohrana podataka, poslužitelji u EU), Resend (slanje email poruka) i
+        Vercel Analytics (anonimna statistika posjeta, bez osobnih podataka).
+        Resend i Vercel su američke tvrtke, pa se prijenos podataka izvan EU
+        odvija na temelju EU-US Data Privacy Framework, odnosno standardnih
+        ugovornih klauzula. Pristup imaju samo Fraviz Studio i SEO Lick kao
+        organizatori.
       </p>
 
       <h2 style={H2}>Koliko čuvamo podatke</h2>
@@ -96,11 +98,12 @@ export default function Privatnost() {
         podataka (AZOP).
       </p>
 
-      <h2 style={H2}>Kolačići</h2>
+      <h2 style={H2}>Kolačići i analitika</h2>
       <p style={P}>
-        Stranica trenutno ne koristi kolačiće za praćenje. Ako uvedemo analitiku,
-        tražit ćemo tvoj pristanak zasebnim obavještenjem o kolačićima prije
-        bilo kakvog praćenja.
+        Stranica ne koristi kolačiće za praćenje. Koristimo Vercel Analytics za
+        anonimnu statistiku posjeta (broj pregleda, referrer, zemlja): ovaj alat
+        ne postavlja kolačiće, ne sprema IP adresu i ne prati te preko drugih
+        stranica.
       </p>
     </main>
   );
