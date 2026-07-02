@@ -5,6 +5,15 @@ import { RAZINA_LABEL, ULOGA_LABEL, type Razina, type Uloga } from "./leadTypes"
 const FROM = process.env.FROM_EMAIL || "aiprobaj <onboarding@resend.dev>";
 const NOTIFY = process.env.NOTIFY_EMAIL || "ivan.bobanovic@fraviz.com";
 
+// Glasno upozorenje umjesto tihe degradacije: resend.dev test domena salje SAMO
+// na email vlasnika Resend racuna, svi ostali primatelji dobivaju 403.
+// (Incident aiprobaj 02.07.2026: FROM_EMAIL nije bio u Vercel envu, mailovi tiho padali.)
+if (!process.env.FROM_EMAIL) {
+  console.error(
+    "[email] UPOZORENJE: FROM_EMAIL nije postavljen. Fallback onboarding@resend.dev NE dostavlja mailove primateljima izvan vlasnickog racuna. Postavi FROM_EMAIL u Vercel env vars i redeployaj.",
+  );
+}
+
 function client(): Resend | null {
   const key = process.env.RESEND_API_KEY;
   if (!key) return null;
