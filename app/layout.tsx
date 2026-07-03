@@ -49,6 +49,9 @@ export const metadata: Metadata = {
     description: "Nauči raditi s AI-em od praktičara. Pet područja u jednom webinaru.",
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "iknKjTKQhkdxUGlYa87QD61a4yCzDTnS6c2CAkDnS7k",
+  },
 };
 
 const startISO = WEBINAR.dateISO;
