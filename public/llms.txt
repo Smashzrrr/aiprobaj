@@ -13,11 +13,11 @@ Prijava: https://aiprobaj.com/#prijava
 
 ## Teme webinara
 
-1. Sto je AI, bez zargona (AI osnove, alati, mindset)
-2. Rad s AI-em od basic do napredno (prompting, workflowovi, praksa)
-3. AI arhitektura (automatizacije, agenti, integracije)
+1. Osnove AI (kako AI radi, vrste alata, mindset)
+2. Rad s AI-em od osnovnog do naprednog korisnika (prompting, workflowovi, izrada web stranice uz Claude dizajn, generiranje leadova)
+3. AI arhitektura (folder struktura, markdown fileovi, izrada skillova, povezivanje s API kljucevima)
 4. SEO, AEO i GEO uz AI (klasicni SEO, Answer Engine i Generative Engine optimizacija)
-5. Sigurnost u doba AI-a (zastita, privatnost, rizici)
+5. Sigurnost i AI (prompt injection, zastita API kljuceva, rizici)
 
 ## FAQ
 

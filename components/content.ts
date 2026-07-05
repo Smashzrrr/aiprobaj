@@ -4,7 +4,7 @@ export const PILLARS = [
   {
     n: "01",
     title: "Osnove AI",
-    desc: "Kako AI stvarno radi, koje vrste alata postoje i gdje ti donose pravu vrijednost, bez mistike i žargona.",
+    desc: "Kako AI stvarno radi, koje vrste alata postoje i gdje ti donose pravu vrijednost.",
     tags: ["Osnove", "Alati", "Mindset"],
   },
   {
@@ -36,7 +36,7 @@ export const PILLARS = [
 export const OUTCOMES = [
   {
     t: "Razumiješ kako AI zapravo radi",
-    d: "Kako LLM modeli poput ChatGPT-a funkcioniraju, bez mistike i žargona.",
+    d: "Kako LLM modeli poput ChatGPT-a funkcioniraju ispod haube, korak po korak.",
   },
   {
     t: "Kako pretvoriti poslovni problem u digitalno rješenje",
