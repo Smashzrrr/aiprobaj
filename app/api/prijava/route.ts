@@ -106,8 +106,10 @@ export async function POST(req: Request) {
     );
   }
 
-  // 8. Potvrda prijavljenom (best-effort, ne blokira odgovor)
-  void sendPrijavaPotvrda(data.ime, data.email);
+  // 8. Potvrda prijavljenom. MORA biti await: na Vercel serverless-u se
+  //    neawaitani "fire and forget" poziv ugasi cim je odgovor poslan, pa
+  //    potvrda cesto nikad ne ode (obavijest nama radi jer je gore awaitana).
+  await sendPrijavaPotvrda(data.ime, data.email);
 
   return NextResponse.json({ success: true, degraded: dbFailed });
 }
