@@ -1,6 +1,7 @@
 import "server-only";
 import { Resend } from "resend";
 import { RAZINA_LABEL, ULOGA_LABEL, type Razina, type Uloga } from "./leadTypes";
+import { WEBINAR } from "./webinar";
 
 const FROM = process.env.FROM_EMAIL || "aiprobaj <onboarding@resend.dev>";
 const NOTIFY = process.env.NOTIFY_EMAIL || "ivan.bobanovic@fraviz.com";
@@ -45,7 +46,10 @@ export async function sendPrijavaNotifikacija(p: NotifyPayload): Promise<boolean
     console.error("[email] RESEND_API_KEY nije postavljen; preskacem obavijest.");
     return false;
   }
-  const subject = (p.dbFailed ? "[BAZA PALA] " : "") + `Nova prijava: ${p.ime}`;
+  const subject =
+    (p.dbFailed ? "[BAZA PALA] " : "") +
+    (WEBINAR.waitlistMode ? "[LISTA ČEKANJA] " : "") +
+    `Nova prijava: ${p.ime}`;
   const banner = p.dbFailed
     ? `<div style="margin:0 0 20px;padding:14px 18px;background:#fef2f2;border:1px solid #fca5a5;border-left:4px solid #dc2626;border-radius:8px;">
          <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#991b1b;">Baza nije zapisala prijavu</p>
@@ -83,11 +87,25 @@ export async function sendPrijavaNotifikacija(p: NotifyPayload): Promise<boolean
   }
 }
 
-// Potvrda prijavljenom (ispunjava obecanje: Zoom link stize na email).
-export async function sendPrijavaPotvrda(ime: string, email: string): Promise<void> {
+// Potvrda prijavljenom. waitlist=true: prvi termin popunjen, osoba je na listi
+// cekanja za sljedeci termin (datum jos nije potvrdjen).
+export async function sendPrijavaPotvrda(
+  ime: string,
+  email: string,
+  waitlist = false,
+): Promise<void> {
   const r = client();
   if (!r) return;
-  const html = `
+  const html = waitlist
+    ? `
+    <div style="font-family:sans-serif;max-width:520px;">
+      <h2 style="color:#0a0a0a;">Na listi si, ${esc(ime)}!</h2>
+      <p style="font-size:15px;line-height:1.6;color:#333;">Prvi termin aiprobaj webinara je popunjen, ali si sad na listi cekanja za sljedeci.</p>
+      <p style="font-size:15px;line-height:1.6;color:#333;">Cim potvrdimo datum sljedeceg termina, javljamo ti ga na ovaj email prije nego krene javna prijava. Popis AI alata i resursa svejedno stize na email.</p>
+      <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
+      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO Lick</p>
+    </div>`
+    : `
     <div style="font-family:sans-serif;max-width:520px;">
       <h2 style="color:#0a0a0a;">Vidimo se, ${esc(ime)}!</h2>
       <p style="font-size:15px;line-height:1.6;color:#333;">Tvoje mjesto na aiprobaj webinaru je rezervirano.</p>
@@ -99,7 +117,9 @@ export async function sendPrijavaPotvrda(ime: string, email: string): Promise<vo
     await r.emails.send({
       from: FROM,
       to: email,
-      subject: "Prijava zaprimljena - aiprobaj webinar",
+      subject: waitlist
+        ? "Na listi si za sljedeci aiprobaj webinar"
+        : "Prijava zaprimljena - aiprobaj webinar",
       html,
     });
   } catch (e) {

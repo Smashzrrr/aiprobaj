@@ -4,6 +4,7 @@ import Countdown from "@/components/Countdown";
 import SpotsBar from "@/components/SpotsBar";
 import MobileNav from "@/components/MobileNav";
 import IntroVideo from "@/components/IntroVideo";
+import { WEBINAR } from "@/lib/webinar";
 import {
   PILLARS,
   OUTCOMES,
@@ -22,6 +23,9 @@ import {
 // Shared font shorthand used across inline styles
 const GROTESK = "var(--font-grotesk), 'Space Grotesk', system-ui, sans-serif";
 const MONO = "var(--font-mono), 'Space Mono', monospace";
+
+// Prvi termin popunjen -> CTA-ovi vode na listu cekanja (vidi lib/webinar.ts).
+const WL = WEBINAR.waitlistMode;
 
 // Shared input base style (used in PrijavaForm, referenced here for structural fidelity)
 const TAG_PILL: React.CSSProperties = {
@@ -155,7 +159,7 @@ export default function Page() {
                 whiteSpace: "nowrap",
               }}
             >
-              Rezerviraj mjesto
+              {WL ? "Lista čekanja" : "Rezerviraj mjesto"}
             </a>
             {/* MobileNav renders hamburger button + dropdown (client island) */}
             <MobileNav />
@@ -1462,7 +1466,7 @@ export default function Page() {
                 color: "var(--hot)",
               }}
             >
-              {"// Ograničena mjesta"}
+              {WL ? "// Prvi termin popunjen" : "// Ograničena mjesta"}
             </div>
             <h2
               style={{
@@ -1475,7 +1479,7 @@ export default function Page() {
                 color: "var(--ink)",
               }}
             >
-              Broj mjesta je ograničen
+              {WL ? "Prvi termin je popunjen" : "Broj mjesta je ograničen"}
             </h2>
             <p
               style={{
@@ -1486,7 +1490,9 @@ export default function Page() {
                 maxWidth: 420,
               }}
             >
-              Krećemo s malom grupom. Prijavi se i javljamo ti termin prvome.
+              {WL
+                ? "Uskoči na listu čekanja i javljamo ti datum sljedećeg termina prvome."
+                : "Krećemo s malom grupom. Prijavi se i javljamo ti termin prvome."}
             </p>
             <a
               href="#prijava"
@@ -1506,7 +1512,7 @@ export default function Page() {
                 letterSpacing: "-0.01em",
               }}
             >
-              Rezerviraj mjesto →
+              {WL ? "Na listu čekanja →" : "Rezerviraj mjesto →"}
             </a>
           </div>
 
@@ -1661,8 +1667,9 @@ export default function Page() {
               color: "rgba(10,10,10,0.72)",
             }}
           >
-            Rezerviraj svoje besplatno mjesto i nauči AI od ljudi koji ga koriste
-            svaki dan.
+            {WL
+              ? "Prvi termin je popunjen. Uhvati mjesto u sljedećem, javljamo ti datum čim ga potvrdimo."
+              : "Rezerviraj svoje besplatno mjesto i nauči AI od ljudi koji ga koriste svaki dan."}
           </p>
           <a
             href="#prijava"
@@ -1682,7 +1689,7 @@ export default function Page() {
               letterSpacing: "-0.01em",
             }}
           >
-            Rezerviraj besplatno mjesto →
+            {WL ? "Na listu čekanja →" : "Rezerviraj besplatno mjesto →"}
           </a>
           <div
             style={{

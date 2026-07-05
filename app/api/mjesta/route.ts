@@ -10,9 +10,11 @@ export async function GET() {
   let taken = 0;
   try {
     const supabase = supabaseAdmin();
+    // Broji samo prave prijave prvog termina, ne waitlist unose.
     const { count, error } = await supabase
       .from("prijave")
-      .select("*", { count: "exact", head: true });
+      .select("*", { count: "exact", head: true })
+      .neq("izvor", "waitlist");
     if (!error && typeof count === "number") {
       taken = count;
     } else if (error) {

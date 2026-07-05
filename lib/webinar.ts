@@ -5,6 +5,10 @@ export const WEBINAR = {
   dateISO: "2026-07-22T19:00:00+02:00",
   durationMin: 90,
   spotsTotal: 50,
+  // Prvi termin popunjen: forma i CTA-ovi se prebacuju na listu čekanja za
+  // sljedeći termin. Kad se dogovori novi termin (Bobi + Ivan Radica): postavi
+  // na false, azuriraj dateISO, i po potrebi resetiraj/arhiviraj prijave.
+  waitlistMode: true,
   // Koliko dodati na STVARNI broj prijava pri prikazu brojaca.
   // 0 = cisto stvarno. Za pocetni momentum promijeni npr. na 8.
   spotsBaseline: 0,

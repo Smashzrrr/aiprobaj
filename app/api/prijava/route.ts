@@ -3,6 +3,7 @@ import { prijavaSchema } from "@/lib/validation";
 import { supabaseAdmin } from "@/lib/supabase";
 import { allowRequest } from "@/lib/rateLimit";
 import { sendPrijavaNotifikacija, sendPrijavaPotvrda } from "@/lib/email";
+import { WEBINAR } from "@/lib/webinar";
 
 export const runtime = "nodejs";
 
@@ -56,7 +57,7 @@ export async function POST(req: Request) {
     consent: true,
     consent_ts: new Date().toISOString(),
     consent_ip: ip,
-    izvor: "landing",
+    izvor: WEBINAR.waitlistMode ? "waitlist" : "landing",
   };
 
   // 5. Tier 1: Supabase insert
@@ -109,7 +110,7 @@ export async function POST(req: Request) {
   // 8. Potvrda prijavljenom. MORA biti await: na Vercel serverless-u se
   //    neawaitani "fire and forget" poziv ugasi cim je odgovor poslan, pa
   //    potvrda cesto nikad ne ode (obavijest nama radi jer je gore awaitana).
-  await sendPrijavaPotvrda(data.ime, data.email);
+  await sendPrijavaPotvrda(data.ime, data.email, WEBINAR.waitlistMode);
 
   return NextResponse.json({ success: true, degraded: dbFailed });
 }

@@ -96,7 +96,13 @@ export default function SpotsBar({
             color: "var(--ink-mut)",
           }}
         >
-          <span style={{ color: "var(--hot)" }}>{m.left} mjesta</span> još slobodno
+          {WEBINAR.waitlistMode || m.left <= 0 ? (
+            <span style={{ color: "var(--hot)" }}>Prvi termin popunjen</span>
+          ) : (
+            <>
+              <span style={{ color: "var(--hot)" }}>{m.left} mjesta</span> još slobodno
+            </>
+          )}
         </div>
       )}
     </div>

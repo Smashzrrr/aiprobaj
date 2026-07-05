@@ -10,8 +10,10 @@ import {
   type Razina,
   type Uloga,
 } from "@/lib/leadTypes";
+import { WEBINAR } from "@/lib/webinar";
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
+const WL = WEBINAR.waitlistMode;
 
 const inputBase: React.CSSProperties = {
   width: "100%",
@@ -199,7 +201,7 @@ export default function PrijavaForm() {
               color: "var(--ink)",
             }}
           >
-            Vidimo se, {submittedName}!
+            {WL ? `Na listi si, ${submittedName}!` : `Vidimo se, ${submittedName}!`}
           </h3>
           <p
             style={{
@@ -210,8 +212,9 @@ export default function PrijavaForm() {
               color: "var(--ink-mut)",
             }}
           >
-            Tvoje mjesto je rezervirano. Zoom link i sve detalje šaljemo na email
-            prije webinara.
+            {WL
+              ? "Javljamo ti datum sljedećeg termina čim ga potvrdimo. Popis AI alata i resursa stiže na email."
+              : "Tvoje mjesto je rezervirano. Zoom link i sve detalje šaljemo na email prije webinara."}
           </p>
           <button
             type="button"
@@ -244,11 +247,11 @@ export default function PrijavaForm() {
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
         <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-mut)" }}>
-          Besplatna prijava
+          {WL ? "Lista čekanja" : "Besplatna prijava"}
         </span>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-dim)" }}>
           <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--hot)" }} />
-          Ograničena mjesta
+          {WL ? "Prvi termin popunjen" : "Ograničena mjesta"}
         </span>
       </div>
 
@@ -261,7 +264,7 @@ export default function PrijavaForm() {
 
       <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 14 }}>
         <h3 style={{ margin: 0, fontFamily: "var(--font-grotesk)", fontWeight: 700, fontSize: 22, letterSpacing: "-.02em", color: "var(--ink)" }}>
-          Rezerviraj svoje mjesto
+          {WL ? "Lista čekanja za sljedeći termin" : "Rezerviraj svoje mjesto"}
         </h3>
 
         <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -414,7 +417,7 @@ export default function PrijavaForm() {
             boxShadow: "0 10px 30px -14px rgba(198,255,58,.6)",
           }}
         >
-          {loading ? "Šaljem…" : "Rezerviraj besplatno mjesto →"}
+          {loading ? "Šaljem…" : WL ? "Prijavi se na listu čekanja →" : "Rezerviraj besplatno mjesto →"}
         </button>
         <p style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.5, color: "var(--ink-dim)", textAlign: "center" }}>
           Bez spama. Odjava jednim klikom. Šaljemo samo detalje webinara.
