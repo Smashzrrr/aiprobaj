@@ -3,21 +3,21 @@
 export const PILLARS = [
   {
     n: "01",
-    title: "Što je AI bez žargona",
-    desc: "Razumij kako AI zapravo radi, koji tipovi alata postoje i gdje ti stvarno donose vrijednost.",
+    title: "Osnove AI",
+    desc: "Kako AI stvarno radi, koje vrste alata postoje i gdje ti donose pravu vrijednost, bez mistike i žargona.",
     tags: ["Osnove", "Alati", "Mindset"],
   },
   {
     n: "02",
-    title: "Rad s AI-em: od basic do napredno",
-    desc: "Prompting, workflowovi i realni zadaci, od prvih koraka do naprednih tehnika koje koristimo svaki dan.",
+    title: "Rad sa AI-em: od osnovnog do naprednog korisnika",
+    desc: "Prompting, workflowovi i praktični zadaci: od prvih koraka do toga da napraviš jednostavnu web stranicu uz pomoć Claude dizajna i generiraš leadove uz minimalan trošak.",
     tags: ["Prompting", "Workflow", "Praksa"],
   },
   {
     n: "03",
     title: "AI arhitektura",
-    desc: "Kako posložiti AI sustav oko svog posla: alati, automatizacije i agenti koji rade umjesto tebe.",
-    tags: ["Automatizacija", "Agenti", "Integracije"],
+    desc: "Posloži AI oko vlastitog rada: folder struktura i markdown fileovi za tvoj AI \"brain\", kako graditi skillove i povezati AI s API ključevima.",
+    tags: ["Struktura", "Skillovi", "API"],
   },
   {
     n: "04",
@@ -28,8 +28,8 @@ export const PILLARS = [
   {
     n: "05",
     title: "Sigurnost i AI",
-    desc: "Kako AI-em podići vlastitu sigurnost i kako ne postati rizik dok koristiš AI alate.",
-    tags: ["Zaštita", "Privatnost", "Rizici"],
+    desc: "Što je prompt injection, kako zaštititi API ključeve i kako ne postati rizik dok koristiš AI alate u poslu.",
+    tags: ["Zaštita", "Privatnost", "Prompt injection"],
   },
 ] as const;
 

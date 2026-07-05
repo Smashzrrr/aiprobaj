@@ -3,6 +3,7 @@ import PrijavaForm from "@/components/PrijavaForm";
 import Countdown from "@/components/Countdown";
 import SpotsBar from "@/components/SpotsBar";
 import MobileNav from "@/components/MobileNav";
+import IntroVideo from "@/components/IntroVideo";
 import {
   PILLARS,
   OUTCOMES,
@@ -409,7 +410,7 @@ export default function Page() {
         </div>
       </div>
 
-      {/* ── INTRO VIDEO (uskoro) ──────────────────────────────── */}
+      {/* ── INTRO VIDEO ──────────────────────────────────────── */}
       <section style={{ padding: "76px 0 4px" }}>
         <div
           style={{
@@ -470,53 +471,7 @@ export default function Page() {
                   "radial-gradient(420px 300px at 50% 42%,#000,transparent 72%)",
               }}
             />
-            {/* Uskoro stanje */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 16,
-              }}
-            >
-              <div
-                style={{
-                  width: 76,
-                  height: 76,
-                  borderRadius: "50%",
-                  background: "rgba(198,255,58,0.12)",
-                  border: "1px solid var(--line2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {/* Play triangle */}
-                <span
-                  aria-hidden="true"
-                  style={{
-                    marginLeft: 6,
-                    borderStyle: "solid",
-                    borderWidth: "15px 0 15px 24px",
-                    borderColor: "transparent transparent transparent var(--ink-dim)",
-                  }}
-                />
-              </div>
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 12,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "var(--ink-mut)",
-                }}
-              >
-                Uskoro
-              </div>
-            </div>
+            <IntroVideo />
           </div>
         </div>
       </section>
