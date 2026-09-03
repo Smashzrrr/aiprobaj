@@ -10,11 +10,13 @@ export async function GET() {
   let taken = 0;
   try {
     const supabase = supabaseAdmin();
-    // Broji samo prave prijave prvog termina, ne waitlist unose.
+    // Broji sve prijave od countFromISO nadalje, bez obzira na izvor.
+    // Prva grupa (sve prije 22.07.2026 17:00) se ne broji, a nove prijave su
+    // trenutno sve izvor="waitlist" pa filter po izvoru ovdje ne smije stajati.
     const { count, error } = await supabase
       .from("prijave")
       .select("*", { count: "exact", head: true })
-      .neq("izvor", "waitlist");
+      .gte("created_at", WEBINAR.countFromISO);
     if (!error && typeof count === "number") {
       taken = count;
     } else if (error) {
