@@ -15,7 +15,7 @@ export const WEBINAR = {
   // Koliko dodati na STVARNI broj prijava pri prikazu brojaca.
   // 0 = cisto stvarno. Za pocetni momentum promijeni npr. na 8.
   spotsBaseline: 0,
-  organizatori: ["Fraviz Studio", "SEO Lick"],
+  organizatori: ["Fraviz Studio", "SEO LICK"],
 } as const;
 
 export function webinarDate(): Date {

@@ -85,7 +85,7 @@ export const INSTRUCTORS = [
   {
     id: "ivan-radica",
     name: "Ivan Radica",
-    role: "Suosnivač i CEO SEO Lick",
+    role: "Suosnivač i CEO SEO LICK",
     bio: "Vodi kako AI koristiti za SEO, AEO i GEO vidljivost koja stvarno diže promet i upite, ne samo rang u tražilici.",
     tag: "SEO · AEO · GEO",
     imageSrc: "/predavaci/ivan-radica.webp",
@@ -93,8 +93,8 @@ export const INSTRUCTORS = [
   {
     id: "marko-smolcic-uzunovic",
     name: "Marko Smolčić Uzunović",
-    role: "Suosnivač i CTO SEO Lick",
-    bio: "Kao CTO SEO Licka odgovoran je za tehničku implementaciju: crawl, indeksacija, brzina stranice.",
+    role: "Suosnivač i CTO SEO LICK",
+    bio: "Kao CTO SEO LICK-a odgovoran je za tehničku implementaciju: crawl, indeksacija, brzina stranice.",
     tag: "Tehnički SEO",
     imageSrc: "/predavaci/marko-smolcic-uzunovic.webp",
   },
@@ -123,7 +123,7 @@ export const AGENDA = [
     t: "03",
     title: "SEO, AEO i GEO uz AI",
     desc: "Vidljivost u tražilicama i u AI odgovorima.",
-    time: "SEO Lick",
+    time: "SEO LICK",
   },
   {
     t: "04",

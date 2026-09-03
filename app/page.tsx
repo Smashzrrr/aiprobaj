@@ -320,7 +320,7 @@ export default function Page() {
                   color: "var(--ink)",
                 }}
               >
-                SEO Lick
+                SEO LICK
               </span>
             </div>
           </div>
@@ -1215,7 +1215,7 @@ export default function Page() {
               maxWidth: 640,
             }}
           >
-            Iza aiprobaj.com stoje Fraviz Studio i SEO Lick: timovi koji AI i SEO rade
+            Iza aiprobaj.com stoje Fraviz Studio i SEO LICK: timovi koji AI i SEO rade
             profesionalno, svaki dan.
           </p>
         </div>
@@ -1409,7 +1409,7 @@ export default function Page() {
                       color: "var(--ink-dim)",
                     }}
                   >
-                    Fraviz Studio × SEO Lick
+                    Fraviz Studio × SEO LICK
                   </div>
                 </div>
                 <div
@@ -1747,7 +1747,7 @@ export default function Page() {
               }}
             >
               Središnje mjesto za učenje AI-a. Projekt Fraviz Studija u suradnji sa
-              SEO Lick.
+              SEO LICK.
             </div>
             <div
               style={{

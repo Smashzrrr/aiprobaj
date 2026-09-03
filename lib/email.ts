@@ -103,7 +103,7 @@ export async function sendPrijavaPotvrda(
       <p style="font-size:15px;line-height:1.6;color:#333;">Prvi termin aiprobaj webinara je popunjen, ali si sad na listi cekanja za sljedeci.</p>
       <p style="font-size:15px;line-height:1.6;color:#333;">Cim potvrdimo datum sljedeceg termina, javljamo ti ga na ovaj email prije nego krene javna prijava. Popis AI alata i resursa svejedno stize na email.</p>
       <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
-      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO Lick</p>
+      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
     </div>`
     : `
     <div style="font-family:sans-serif;max-width:520px;">
@@ -111,7 +111,7 @@ export async function sendPrijavaPotvrda(
       <p style="font-size:15px;line-height:1.6;color:#333;">Tvoje mjesto na aiprobaj webinaru je rezervirano.</p>
       <p style="font-size:15px;line-height:1.6;color:#333;">Zoom link i sve detalje saljemo na ovaj email prije pocetka. Snimku dobivaju svi prijavljeni, cak i ako ne mogu pratiti uzivo.</p>
       <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
-      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO Lick</p>
+      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
     </div>`;
   try {
     await r.emails.send({

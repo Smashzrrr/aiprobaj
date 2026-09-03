@@ -54,7 +54,7 @@ export default function TwitterImage() {
             AI · SEO · AEO · GEO · SIGURNOST
           </div>
           <div style={{ display: "flex", marginTop: 12, fontSize: 30, fontWeight: 700, color: "#f5f5f5" }}>
-            Fraviz Studio&nbsp;&nbsp;×&nbsp;&nbsp;SEO Lick
+            Fraviz Studio&nbsp;&nbsp;×&nbsp;&nbsp;SEO LICK
           </div>
         </div>
       </div>

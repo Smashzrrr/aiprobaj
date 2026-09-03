@@ -75,7 +75,7 @@ const eventNode = {
   image: [`${SITE}/opengraph-image`],
   organizer: [
     { "@type": "Organization", name: "Fraviz Studio", url: "https://fraviz.com" },
-    { "@type": "Organization", name: "SEO Lick" },
+    { "@type": "Organization", name: "SEO LICK" },
   ],
   performer: [
     { "@type": "Person", name: "Ivan Bobanović" },
@@ -101,7 +101,7 @@ const jsonLd = {
       name: "aiprobaj.com",
       url: SITE,
       description:
-        "Edukativna platforma za učenje AI-a na hrvatskom jeziku. Projekt Fraviz Studija i SEO Licka.",
+        "Edukativna platforma za učenje AI-a na hrvatskom jeziku. Projekt Fraviz Studija i SEO LICK-a.",
       founder: [
         { "@type": "Person", name: "Ivan Bobanović" },
         { "@type": "Person", name: "Ivan Radica" },

@@ -78,7 +78,7 @@ export default function Privatnost() {
         Vercel Analytics (anonimna statistika posjeta, bez osobnih podataka).
         Resend i Vercel su američke tvrtke, pa se prijenos podataka izvan EU
         odvija na temelju EU-US Data Privacy Framework, odnosno standardnih
-        ugovornih klauzula. Pristup imaju samo Fraviz Studio i SEO Lick kao
+        ugovornih klauzula. Pristup imaju samo Fraviz Studio i SEO LICK kao
         organizatori.
       </p>
 
