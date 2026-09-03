@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { WEBINAR } from "@/lib/webinar";
+import { WEBINAR, isPast } from "@/lib/webinar";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -59,38 +59,43 @@ const endISO = new Date(
   new Date(WEBINAR.dateISO).getTime() + WEBINAR.durationMin * 60000,
 ).toISOString();
 
+// Event node samo dok je termin u buducnosti. Prosli webinar oglasen kao
+// "EventScheduled" je zastarjeli signal koji Google moze flagirati. Kad se
+// postavi novi dateISO za sljedeci termin, Event se automatski vraca.
+const eventNode = {
+  "@type": "Event",
+  name: "aiprobaj.com: besplatan online AI webinar",
+  description:
+    "Besplatan online webinar: nauči raditi s AI-em od praktičara. Pet područja: AI osnove i napredni rad, AI arhitektura, SEO/AEO/GEO i sigurnost.",
+  startDate: startISO,
+  endDate: endISO,
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  location: { "@type": "VirtualLocation", url: SITE },
+  image: [`${SITE}/opengraph-image`],
+  organizer: [
+    { "@type": "Organization", name: "Fraviz Studio", url: "https://fraviz.com" },
+    { "@type": "Organization", name: "SEO Lick" },
+  ],
+  performer: [
+    { "@type": "Person", name: "Ivan Bobanović" },
+    { "@type": "Person", name: "Ivan Radica" },
+    { "@type": "Person", name: "Marko Smolčić Uzunović" },
+  ],
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    url: `${SITE}/#prijava`,
+    validFrom: "2026-07-01T00:00:00+02:00",
+  },
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Event",
-      name: "aiprobaj.com: besplatan online AI webinar",
-      description:
-        "Besplatan online webinar: nauči raditi s AI-em od praktičara. Pet područja: AI osnove i napredni rad, AI arhitektura, SEO/AEO/GEO i sigurnost.",
-      startDate: startISO,
-      endDate: endISO,
-      eventStatus: "https://schema.org/EventScheduled",
-      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
-      location: { "@type": "VirtualLocation", url: SITE },
-      image: [`${SITE}/opengraph-image`],
-      organizer: [
-        { "@type": "Organization", name: "Fraviz Studio", url: "https://fraviz.com" },
-        { "@type": "Organization", name: "SEO Lick" },
-      ],
-      performer: [
-        { "@type": "Person", name: "Ivan Bobanović" },
-        { "@type": "Person", name: "Ivan Radica" },
-        { "@type": "Person", name: "Marko Smolčić Uzunović" },
-      ],
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        url: `${SITE}/#prijava`,
-        validFrom: "2026-07-01T00:00:00+02:00",
-      },
-    },
+    ...(isPast() ? [] : [eventNode]),
     {
       "@type": "Organization",
       name: "aiprobaj.com",
