@@ -25,6 +25,8 @@ export const prijavaSchema = z.object({
     .optional()
     .or(z.literal("").transform(() => undefined)),
   ciljevi: z.array(z.string().max(60)).max(12).optional().default([]),
+  // Oznaka webinara s posebnog landinga (npr. /ai-mozak). Bez nje = glavni landing.
+  webinar: z.enum(["ai-mozak"]).optional(),
   // Consent mora biti tocno true (GDPR pristanak).
   consent: z.literal(true, {
     message: "Potreban je pristanak na obradu podataka",

@@ -50,5 +50,6 @@ export interface PrijavaInput {
   uloga?: string;
   ciljevi?: string[];
   consent: boolean;
+  webinar?: "ai-mozak";
   website?: string; // honeypot: mora ostati prazno
 }

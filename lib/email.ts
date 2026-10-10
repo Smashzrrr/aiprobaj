@@ -1,7 +1,7 @@
 import "server-only";
 import { Resend } from "resend";
 import { RAZINA_LABEL, ULOGA_LABEL, type Razina, type Uloga } from "./leadTypes";
-import { WEBINAR } from "./webinar";
+import { WEBINAR, AI_MOZAK } from "./webinar";
 
 const FROM = process.env.FROM_EMAIL || "aiprobaj <onboarding@resend.dev>";
 const NOTIFY = process.env.NOTIFY_EMAIL || "ivan.bobanovic@fraviz.com";
@@ -37,6 +37,8 @@ export interface NotifyPayload {
   ciljevi?: string[];
   dbFailed: boolean;
   dbError?: string | null;
+  webinar?: "ai-mozak";
+  ponovna?: boolean; // vec postojala u bazi, prijavila se ponovno s posebnog landinga
 }
 
 // Tier 2: obavijest nama. UVIJEK se pokusava. Ako je baza pala, crveni marker.
@@ -48,8 +50,12 @@ export async function sendPrijavaNotifikacija(p: NotifyPayload): Promise<boolean
   }
   const subject =
     (p.dbFailed ? "[BAZA PALA] " : "") +
-    (WEBINAR.waitlistMode ? "[LISTA ČEKANJA] " : "") +
-    `Nova prijava: ${p.ime}`;
+    (p.webinar === "ai-mozak"
+      ? "[AI MOZAK] "
+      : WEBINAR.waitlistMode
+        ? "[LISTA ČEKANJA] "
+        : "") +
+    (p.ponovna ? `Ponovna prijava: ${p.ime}` : `Nova prijava: ${p.ime}`);
   const banner = p.dbFailed
     ? `<div style="margin:0 0 20px;padding:14px 18px;background:#fef2f2;border:1px solid #fca5a5;border-left:4px solid #dc2626;border-radius:8px;">
          <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#991b1b;">Baza nije zapisala prijavu</p>
@@ -93,9 +99,31 @@ export async function sendPrijavaPotvrda(
   ime: string,
   email: string,
   waitlist = false,
+  webinar?: "ai-mozak",
 ): Promise<void> {
   const r = client();
   if (!r) return;
+  if (webinar === "ai-mozak") {
+    const html = `
+    <div style="font-family:sans-serif;max-width:520px;">
+      <h2 style="color:#0a0a0a;">Mjesto je tvoje, ${esc(ime)}!</h2>
+      <p style="font-size:15px;line-height:1.6;color:#333;">Tvoje mjesto na webinaru <b>${AI_MOZAK.naziv}</b> je rezervirano: ${AI_MOZAK.dan.toLowerCase()} ${AI_MOZAK.datum} u ${AI_MOZAK.sat}, online, oko ${AI_MOZAK.durationMin} minuta.</p>
+      <p style="font-size:15px;line-height:1.6;color:#333;">Link za webinar saljemo na ovaj email prije pocetka. Snimku, kit i upute dobivaju svi prijavljeni, cak i ako ne mogu pratiti uzivo.</p>
+      <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
+      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
+    </div>`;
+    try {
+      await r.emails.send({
+        from: FROM,
+        to: email,
+        subject: `Prijava zaprimljena - ${AI_MOZAK.naziv}, ${AI_MOZAK.datum} u ${AI_MOZAK.sat}`,
+        html,
+      });
+    } catch (e) {
+      console.error("[email] potvrda ai-mozak threw:", e);
+    }
+    return;
+  }
   const html = waitlist
     ? `
     <div style="font-family:sans-serif;max-width:520px;">

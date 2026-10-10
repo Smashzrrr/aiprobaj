@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     consent: true,
     consent_ts: new Date().toISOString(),
     consent_ip: ip,
-    izvor: WEBINAR.waitlistMode ? "waitlist" : "landing",
+    izvor: data.webinar ?? (WEBINAR.waitlistMode ? "waitlist" : "landing"),
   };
 
   // 5. Tier 1: Supabase insert
@@ -80,6 +80,27 @@ export async function POST(req: Request) {
     dbFailed = true;
     dbError = e instanceof Error ? e.message : String(e);
     console.error("[prijava] DB threw:", e);
+  }
+
+  // Duplikat s posebnog landinga (npr. stari prijavljeni s /ai-mozak): oznaci
+  // postojecu prijavu za taj webinar i posalji potvrdu, inace se tiho izgubi.
+  if (duplicate && data.webinar) {
+    try {
+      const { error } = await supabaseAdmin()
+        .from("prijave")
+        .update({ izvor: data.webinar })
+        .eq("email", data.email);
+      if (error) console.error("[prijava] duplicate update error:", error);
+    } catch (e) {
+      console.error("[prijava] duplicate update threw:", e);
+    }
+    try {
+      await sendPrijavaNotifikacija({ ...data, dbFailed: false, ponovna: true });
+    } catch (e) {
+      console.error("[prijava] notifikacija threw:", e);
+    }
+    await sendPrijavaPotvrda(data.ime, data.email, false, data.webinar);
+    return NextResponse.json({ success: true, duplicate: true });
   }
 
   // Duplikat: vec prijavljen, idempotentno vrati uspjeh, bez novog maila.
@@ -110,7 +131,12 @@ export async function POST(req: Request) {
   // 8. Potvrda prijavljenom. MORA biti await: na Vercel serverless-u se
   //    neawaitani "fire and forget" poziv ugasi cim je odgovor poslan, pa
   //    potvrda cesto nikad ne ode (obavijest nama radi jer je gore awaitana).
-  await sendPrijavaPotvrda(data.ime, data.email, WEBINAR.waitlistMode);
+  await sendPrijavaPotvrda(
+    data.ime,
+    data.email,
+    data.webinar ? false : WEBINAR.waitlistMode,
+    data.webinar,
+  );
 
   return NextResponse.json({ success: true, degraded: dbFailed });
 }
