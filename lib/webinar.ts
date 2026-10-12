@@ -31,9 +31,10 @@ export function isPast(now: number = Date.now()): boolean {
 export const AI_MOZAK = {
   slug: "ai-mozak",
   naziv: "Postavi AI mozak",
-  dateISO: "2026-10-21T19:00:00+02:00",
+  // CET (+01:00): zimsko vrijeme krece 25.10.2026.
+  dateISO: "2026-10-28T18:00:00+01:00",
   dan: "Srijeda",
-  datum: "21.10.",
-  sat: "19:00",
+  datum: "28.10.",
+  sat: "18:00",
   durationMin: 60,
 } as const;
