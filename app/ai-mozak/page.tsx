@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AiMozakForm from "@/components/AiMozakForm";
+import AiMozakSpots from "@/components/AiMozakSpots";
 import { AI_MOZAK } from "@/lib/webinar";
 import "./ai-mozak.css";
 
@@ -97,6 +98,7 @@ export default function AiMozakPage() {
               <li>Postavljanje uživo, na našem ekranu, korak po korak</li>
               <li>Kit i upute za tvoj AI mozak nakon webinara</li>
             </ul>
+            <AiMozakSpots />
             <div className="from">
               Predavači iz <b>Fraviz Studio</b> / <b>SEO LICK</b>
             </div>
