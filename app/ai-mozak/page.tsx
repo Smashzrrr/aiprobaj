@@ -48,7 +48,16 @@ const AGENDA = [
   { n: "03", h: "Pitanja", p: "Odgovaramo uživo.", t: "~10 min" },
 ];
 
+const ZAMISLI = [
+  "asistenta koji ne zaboravlja nijednog klijenta",
+  "copywritera koji već piše kao ti",
+  "analitičara koji zna svaku tvoju odluku i zašto",
+  "planera koji ti ujutro kaže što je danas najvažnije",
+];
+
 const FAQ = [
+  ["Radi li ovo za moju branšu?", "Da, ako radiš s puno znanja: klijenti, ponude, procesi, odluke. Kit je napravljen neutralno na branšu. Mi ga koristimo u agenciji, a postavili smo ga i za praksu nutricionistice."],
+  ["Koliko vremena traži?", "Postavljanje oko sat vremena, prvo punjenje pola sata. Poslije toga par minuta ujutro i par minuta navečer."],
   ["Trebam li znati programirati?", "Ne. Sve što pokazujemo radi se klikom i kopiranjem teksta."],
   ["Moram li išta instalirati prije webinara?", "Ne. Na webinaru samo gledaš. Upute za postavljanje dobiješ poslije, u Skool zajednici."],
   ["Što mi treba za vlastiti AI mozak?", "Laptop (Mac ili Windows) i Claude Pro, 20 USD mjesečno. VS Code i Obsidian su besplatni."],
@@ -128,6 +137,23 @@ export default function AiMozakPage() {
         </div>
       </header>
 
+      {/* === PISMO (uvod u prvom licu) === */}
+      <section className="sec letter-sec">
+        <div className="wrap">
+          <div className="letter">
+            <div className="letter-head">
+              <Image src="/predavaci/ivan-radica.webp" alt="Ivan Radica" width={56} height={56} />
+              <span className="kicker">{"// Bok, Ivan ovdje"}</span>
+            </div>
+            <p>AI nije nešto što tek dolazi. Već je tu. A većina ga koristi isto kao prvi dan: otvori novi chat i krene od nule.</p>
+            <p>Objasniš tko si. Objasniš klijenta. Objasniš kako pišeš. Sutra opet.</p>
+            <p>Za to vrijeme netko u tvojoj branši to je zapisao jednom. Njegov AI zna posao prije nego ga išta pita.</p>
+            <p className="beat">Nije stvar u boljem promptu.<br />Ni u novom alatu.<br /><span className="lime">Stvar je u kontekstu.</span></p>
+            <p>Zato u srijedu {AI_MOZAK.datum} u {AI_MOZAK.sat} uživo pokazujem kako se postavlja AI mozak.</p>
+          </div>
+        </div>
+      </section>
+
       {/* === MARQUEE === */}
       <div className="marquee" aria-hidden="true">
         <div className="track">
@@ -186,6 +212,24 @@ export default function AiMozakPage() {
         </div>
       </section>
 
+      {/* === ZAMISLI === */}
+      <section className="sec">
+        <div className="wrap">
+          <span className="kicker">{"// Zamisli"}</span>
+          <h2>Zamisli da imaš:</h2>
+          <div className="imagine">
+            {ZAMISLI.map((z, i) => (
+              <div className="im" key={z}>
+                <span className="n">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{z}</h3>
+              </div>
+            ))}
+          </div>
+          <p className="verdict">To nije novi zaposlenik. <span className="lime">To je AI koji prije svakog zadatka pročita tvoj mozak.</span></p>
+          <p className="sub">Pamti samo ono što zapišeš. Zato ti pokazujemo kako ga postaviti.</p>
+        </div>
+      </section>
+
       {/* === STO CES VIDJETI === */}
       <section className="sec" id="program">
         <div className="wrap">
@@ -216,7 +260,7 @@ export default function AiMozakPage() {
             <div className="get"><span className="ic">[ kit ]</span><h3>Kit AI mozga</h3><p>Struktura, pravila i 7 naredbi. Skineš, otvoriš i kreneš.</p></div>
             <div className="get"><span className="ic">[ snimka ]</span><h3>Snimka webinara</h3><p>Stiže svim prijavljenima. Ne moraš stići uživo.</p></div>
             <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u Skool zajednici: postavljanje, punjenje i automatski ritam.</p></div>
-            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. Vrijedi za prijave na dan webinara.</p></div>
+            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. Vrijedi za prijave do ponoći na dan webinara.</p></div>
           </div>
         </div>
       </section>
@@ -312,7 +356,7 @@ export default function AiMozakPage() {
           <h2>
             Svaki novi chat počinje od nule. <span className="lime">Tvoj AI mozak ne mora.</span>
           </h2>
-          <p>AI mozak ne razmišlja umjesto tebe. On te tjera da zapišeš ono što si mislio da pamtiš.</p>
+          <p>Imaš dva puta. Nastaviti kao dosad: novi chat, isti kontekst, opet od nule. Ili jednom zapisati što AI treba znati i pustiti ga da radi s tobom.</p>
           <a className="btn" href="#prijava" style={{ fontSize: 17, padding: "17px 28px" }}>
             Rezerviraj mjesto →
           </a>
