@@ -59,9 +59,32 @@ const FAQ = [
   ["Što ako ne stignem uživo?", "Prijavi se svejedno. Snimka i upute stižu ti na mail."],
 ];
 
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://aiprobaj.com";
+const EVENT_LD = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: `${AI_MOZAK.naziv}: besplatni AI webinar`,
+  description: OPIS,
+  startDate: AI_MOZAK.dateISO,
+  endDate: new Date(new Date(AI_MOZAK.dateISO).getTime() + AI_MOZAK.durationMin * 60000).toISOString(),
+  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  location: { "@type": "VirtualLocation", url: `${SITE}/ai-mozak` },
+  inLanguage: "hr",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR", url: `${SITE}/ai-mozak`, availability: "https://schema.org/InStock" },
+  organizer: { "@type": "Organization", name: "aiprobaj.com", url: SITE },
+  performer: [
+    { "@type": "Person", name: "Ivan Radica" },
+    { "@type": "Person", name: "Marko Smolčić Uzunović" },
+    { "@type": "Person", name: "Ivan Bobanović" },
+  ],
+};
+
 export default function AiMozakPage() {
   return (
     <div className="am">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(EVENT_LD) }} />
       {/* === NAV === */}
       <nav>
         <div className="wrap">

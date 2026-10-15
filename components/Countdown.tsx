@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { webinarDate } from "@/lib/webinar";
+import { countdownDate } from "@/lib/webinar";
 
 function calc(target: number, now: number) {
   let diff = Math.max(0, target - now);
@@ -24,7 +24,7 @@ export default function Countdown({
 }: {
   variant?: "hero" | "urgency";
 }) {
-  const target = webinarDate().getTime();
+  const target = countdownDate().getTime();
   // Initial (SSR i prvi render): sve nule, deterministicki, bez hydration mismatcha.
   const [t, setT] = useState(() => calc(target, target));
 

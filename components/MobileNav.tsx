@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AI_MOZAK, PROMO_AI_MOZAK, PROMO_HREF } from "@/lib/webinar";
 
 const NAV_LINKS = [
   { href: "#program", label: "Program" },
@@ -123,7 +124,7 @@ export default function MobileNav() {
             </a>
           ))}
           <a
-            href="#prijava"
+            href={PROMO_AI_MOZAK ? PROMO_HREF : "#prijava"}
             onClick={close}
             style={{
               textDecoration: "none",
@@ -141,7 +142,7 @@ export default function MobileNav() {
               marginTop: 12,
             }}
           >
-            Rezerviraj mjesto
+            {PROMO_AI_MOZAK ? `${AI_MOZAK.naziv} · ${AI_MOZAK.datum}` : "Rezerviraj mjesto"}
           </a>
         </div>
       )}
