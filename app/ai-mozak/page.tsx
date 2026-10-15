@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AiMozakForm from "@/components/AiMozakForm";
+import AiMozakSpots from "@/components/AiMozakSpots";
 import { AI_MOZAK } from "@/lib/webinar";
 import "./ai-mozak.css";
 
@@ -29,8 +30,8 @@ const MARQUEE = ["Context engineering", "AI mozak", "Claude Code", "Obsidian", "
 
 const KORACI = [
   { n: "01", h: "Zašto kontekst pobjeđuje prompt", p: "Isti zadatak dvaput: jednom u praznom chatu, jednom s kontekstom. Razliku vidiš odmah.", c: ["Context engineering", "Primjer"] },
-  { n: "02", h: "Postavljanje kita", p: "Gotova struktura mozga otvorena u VS Codeu i Obsidianu, s pravilima koja AI čita prije svakog razgovora.", c: ["Claude Code", "Obsidian", "Pravila"] },
-  { n: "03", h: "Prvo punjenje", p: "AI intervjuira i sam piše stranice: tko si, kako pišeš, koji su ti ciljevi i projekti. Diktat je dovoljan.", c: ["O meni", "Glas", "Ciljevi"] },
+  { n: "02", h: "Postavljanje paketa", p: "Gotova struktura mozga otvorena u VS Codeu i Obsidianu, s pravilima koja AI čita prije svakog razgovora.", c: ["Claude Code", "Obsidian", "Pravila"] },
+  { n: "03", h: "Prvi unos znanja", p: "AI intervjuira i sam piše stranice: tko si, kako pišeš, koji su ti ciljevi i projekti. Diktat je dovoljan.", c: ["O meni", "Glas", "Ciljevi"] },
   { n: "04", h: "Prvi dokument i prvo pitanje", p: "Dokument postaje povezane bilješke. Onda isto pitanje postavimo praznom chatu i mozgu.", c: ["Ingest", "Pitanja", "Graf"] },
   { n: "05", h: "Kako izgleda nakon par mjeseci", p: "Stvarni AI mozak agencije: 300+ bilješki, jutarnji brief na mobitelu i AI koji piše ponude jer već zna klijenta.", c: ["Stvarni primjer", "Automatizacija"] },
 ];
@@ -43,7 +44,7 @@ const PREDAVACI = [
 
 const AGENDA = [
   { n: "00", h: "Zašto kontekst", p: "Context engineering bez teorije radi teorije: što AI treba znati i gdje to zapisati.", t: "~15 min" },
-  { n: "01", h: "Postavljanje uživo", p: "Kit, prvo punjenje, prvi dokument i prvo pitanje, na našem ekranu.", t: "~30 min" },
+  { n: "01", h: "Postavljanje uživo", p: "Paket, prvi unos znanja, prvi dokument i prvo pitanje, na našem ekranu.", t: "~30 min" },
   { n: "02", h: "Kako dalje", p: "Kako ga postaviti sam i što ako želiš da ga postavimo s tobom.", t: "~5 min" },
   { n: "03", h: "Pitanja", p: "Odgovaramo uživo.", t: "~10 min" },
 ];
@@ -52,7 +53,7 @@ const FAQ = [
   ["Trebam li znati programirati?", "Ne. Sve što pokazujemo radi se klikom i kopiranjem teksta."],
   ["Moram li išta instalirati prije webinara?", "Ne. Na webinaru samo gledaš. Upute za postavljanje dobiješ poslije, u Skool zajednici."],
   ["Što mi treba za vlastiti AI mozak?", "Laptop (Mac ili Windows) i Claude Pro, 20 USD mjesečno. VS Code i Obsidian su besplatni."],
-  ["Mogu li umjesto Claudea koristiti ChatGPT?", "Kit je napravljen za Claude Code. Bilješke su obični tekstualni fileovi pa ih može čitati bilo koji AI, ali naredbe su pisane za Claude."],
+  ["Mogu li umjesto Claudea koristiti ChatGPT?", "Paket je napravljen za Claude Code. Bilješke su obični tekstualni fileovi pa ih može čitati bilo koji AI, ali naredbe su pisane za Claude."],
   ["Je li webinar besplatan?", "Da. Konzultacija za polaznike je također besplatna."],
   ["Što je s privatnošću?", "Mozak živi na tvom laptopu. Ono što AI pročita šalje se na obradu, zato pokazujemo što u mozak ide, a što ne."],
   ["Možete li mi vi postaviti AI mozak?", "Da. O tome je besplatna konzultacija za polaznike: pogledamo tvoj posao i kažemo što ima smisla spojiti."],
@@ -118,8 +119,9 @@ export default function AiMozakPage() {
             <ul className="checks">
               <li>Online, oko {AI_MOZAK.durationMin} minuta, snimka za sve prijavljene</li>
               <li>Postavljanje uživo, na našem ekranu, korak po korak</li>
-              <li>Kit i upute za tvoj AI mozak nakon webinara</li>
+              <li>Paket i upute za tvoj AI mozak nakon webinara</li>
             </ul>
+            <AiMozakSpots />
             <div className="from">
               Predavači iz <b>Fraviz Studio</b> / <b>SEO LICK</b>
             </div>
@@ -176,7 +178,7 @@ export default function AiMozakPage() {
           <div className="quote">
             <span className="q">“</span>
             <div>
-              <blockquote>Context engineering je umijeće punjenja AI-jevog konteksta točno onim informacijama koje trebaju za sljedeći korak.</blockquote>
+              <blockquote>Context engineering je umijeće popunjavanja AI-jevog konteksta točno onim informacijama koje trebaju za sljedeći korak.</blockquote>
               <cite>Andrej Karpathy · slobodan prijevod</cite>
             </div>
           </div>
@@ -213,9 +215,9 @@ export default function AiMozakPage() {
           <span className="kicker">{"// Što dobivaš"}</span>
           <h2>Gledaš uživo, a postaviš kad stigneš</h2>
           <div className="gets">
-            <div className="get"><span className="ic">[ kit ]</span><h3>Kit AI mozga</h3><p>Struktura, pravila i 7 naredbi. Skineš, otvoriš i kreneš.</p></div>
+            <div className="get"><span className="ic">[ paket ]</span><h3>Paket AI mozga</h3><p>Struktura, pravila i 7 naredbi. Skineš, otvoriš i kreneš.</p></div>
             <div className="get"><span className="ic">[ snimka ]</span><h3>Snimka webinara</h3><p>Stiže svim prijavljenima. Ne moraš stići uživo.</p></div>
-            <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u Skool zajednici: postavljanje, punjenje i automatski ritam.</p></div>
+            <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u Skool zajednici: postavljanje, unos znanja i automatski ritam.</p></div>
             <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. Vrijedi za prijave na dan webinara.</p></div>
           </div>
         </div>
