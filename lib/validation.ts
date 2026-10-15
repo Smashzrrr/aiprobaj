@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { RAZINE, ULOGE } from "./leadTypes";
+import { PRIVOLA_VERZIJE } from "./privola";
 
 // Server-side validacija prijave (allowlist). Klijentska validacija je samo UX.
 export const prijavaSchema = z.object({
@@ -31,6 +32,11 @@ export const prijavaSchema = z.object({
   consent: z.literal(true, {
     message: "Potreban je pristanak na obradu podataka",
   }),
+  // Verzija teksta privole koju je forma prikazala (lib/privola.ts).
+  // Stari klijent je ne salje; ruta tada upisuje PRIVOLA_BEZ_VERZIJE.
+  consentVersion: z.enum(PRIVOLA_VERZIJE).optional(),
+  // Zasebna, neobavezna privola za buduce edukacije i novosti.
+  marketingOptIn: z.boolean().optional().default(false),
 });
 
 export type PrijavaParsed = z.infer<typeof prijavaSchema>;

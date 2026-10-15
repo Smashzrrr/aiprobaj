@@ -11,6 +11,7 @@ import {
   type Uloga,
 } from "@/lib/leadTypes";
 import { WEBINAR } from "@/lib/webinar";
+import { MARKETING_TEKST, PRIVOLA_TEKST, PRIVOLA_VERZIJA } from "@/lib/privola";
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
 const WL = WEBINAR.waitlistMode;
@@ -42,6 +43,7 @@ export default function PrijavaForm() {
   const [uloga, setUloga] = useState("");
   const [ciljevi, setCiljevi] = useState<string[]>([]);
   const [consent, setConsent] = useState(false);
+  const [marketing, setMarketing] = useState(false);
   const [website, setWebsite] = useState(""); // honeypot
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [serverError, setServerError] = useState("");
@@ -55,6 +57,9 @@ export default function PrijavaForm() {
       if (raw) {
         const s = JSON.parse(raw);
         if (s && s.name) {
+          // localStorage postoji tek nakon mounta; citanje u useState
+          // inicijalizatoru razbilo bi hidraciju (server nema localStorage).
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setSubmitted(true);
           setSubmittedName(s.name);
         }
@@ -109,6 +114,8 @@ export default function PrijavaForm() {
           uloga,
           ciljevi,
           consent,
+          consentVersion: PRIVOLA_VERZIJA,
+          marketingOptIn: marketing,
           website,
         }),
       });
@@ -158,6 +165,7 @@ export default function PrijavaForm() {
     setUloga("");
     setCiljevi([]);
     setConsent(false);
+    setMarketing(false);
     setErrors({});
     setServerError("");
   }
@@ -382,8 +390,20 @@ export default function PrijavaForm() {
             style={{ marginTop: 3, accentColor: "var(--accent)", width: 16, height: 16, flex: "none" }}
           />
           <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.5, color: errors.consent ? "var(--hot)" : "var(--ink-mut)" }}>
-            Prihvaćam da aiprobaj (Fraviz Studio) obradi moje podatke radi prijave na webinar i slanja detalja. Vidi{" "}
+            {PRIVOLA_TEKST} Vidi{" "}
             <a href="/privatnost" target="_blank" style={{ color: "var(--accent)" }}>Politiku privatnosti</a>.
+          </span>
+        </label>
+
+        <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={marketing}
+            onChange={(e) => setMarketing(e.target.checked)}
+            style={{ marginTop: 3, accentColor: "var(--accent)", width: 16, height: 16, flex: "none" }}
+          />
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.5, color: "var(--ink-mut)" }}>
+            {MARKETING_TEKST}
           </span>
         </label>
 
@@ -420,7 +440,7 @@ export default function PrijavaForm() {
           {loading ? "Šaljem…" : WL ? "Prijavi se na listu čekanja →" : "Rezerviraj besplatno mjesto →"}
         </button>
         <p style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.5, color: "var(--ink-dim)", textAlign: "center" }}>
-          Bez spama. Odjava jednim klikom. Šaljemo samo detalje webinara.
+          Bez spama. Odjava jednim klikom. Novosti samo ako ih označiš.
         </p>
       </form>
     </div>

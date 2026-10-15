@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { RAZINE, RAZINA_LABEL, type Razina } from "@/lib/leadTypes";
 import { AI_MOZAK } from "@/lib/webinar";
+import { MARKETING_TEKST, PRIVOLA_TEKST, PRIVOLA_VERZIJA } from "@/lib/privola";
 
 // Prijava za webinar "Postavi AI mozak". Salje na isti /api/prijava kao glavni
 // landing, s oznakom webinar: "ai-mozak" (izvor u bazi + posebna potvrda).
@@ -15,6 +16,7 @@ export default function AiMozakForm() {
   const [email, setEmail] = useState("");
   const [razina, setRazina] = useState<Razina | "">("");
   const [consent, setConsent] = useState(false);
+  const [marketing, setMarketing] = useState(false);
   const [website, setWebsite] = useState(""); // honeypot
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,6 +38,8 @@ export default function AiMozakForm() {
           email: email.trim(),
           razina,
           consent,
+          consentVersion: PRIVOLA_VERZIJA,
+          marketingOptIn: marketing,
           website,
           webinar: AI_MOZAK.slug,
         }),
@@ -103,9 +107,12 @@ export default function AiMozakForm() {
         <label className="consent">
           <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
           <span>
-            Prihvaćam da aiprobaj (Fraviz Studio) obradi moje podatke radi prijave na webinar i slanja detalja. Vidi{" "}
-            <Link href="/privatnost">Politiku privatnosti</Link>.
+            {PRIVOLA_TEKST} Vidi <Link href="/privatnost">Politiku privatnosti</Link>.
           </span>
+        </label>
+        <label className="consent">
+          <input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} />
+          <span>{MARKETING_TEKST}</span>
         </label>
         {error && (
           <p role="alert" style={{ color: "var(--hot)", fontFamily: "var(--font-m)", fontSize: 12, margin: "0 0 12px" }}>
@@ -115,7 +122,7 @@ export default function AiMozakForm() {
         <button className="btn big" type="submit" disabled={loading}>
           {loading ? "Šaljem…" : "Rezerviraj mjesto →"}
         </button>
-        <p className="fine">Bez spama. Odjava jednim klikom. Šaljemo samo detalje webinara.</p>
+        <p className="fine">Bez spama. Odjava jednim klikom. Novosti samo ako ih označiš.</p>
       </form>
     </div>
   );

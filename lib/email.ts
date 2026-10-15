@@ -2,6 +2,7 @@ import "server-only";
 import { Resend } from "resend";
 import { RAZINA_LABEL, ULOGA_LABEL, type Razina, type Uloga } from "./leadTypes";
 import { WEBINAR, AI_MOZAK } from "./webinar";
+import { odjavaApiUrl, odjavaUrl, smijeSlati, type VrstaMaila } from "./odjava";
 
 const FROM = process.env.FROM_EMAIL || "aiprobaj <onboarding@resend.dev>";
 const NOTIFY = process.env.NOTIFY_EMAIL || "ivan.bobanovic@fraviz.com";
@@ -26,6 +27,72 @@ function esc(s: string): string {
     /[&<>"]/g,
     (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] as string,
   );
+}
+
+// List-Unsubscribe (RFC 2369) i one-click odjava (RFC 8058): Gmail i Yahoo
+// ih traze za masovno slanje. Mail klijent POST-a na URL i osoba je odjavljena.
+export function odjavaHeaders(email: string): Record<string, string> | null {
+  const url = odjavaApiUrl(email);
+  if (!url) return null;
+  return {
+    "List-Unsubscribe": `<${url}>`,
+    "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+  };
+}
+
+// Podnozje s linkom za odjavu. Bez ODJAVA_SECRET ostaje samo potpis.
+function podnozje(email: string): string {
+  const url = odjavaUrl(email);
+  const odjava = url
+    ? `<p style="font-size:12px;line-height:1.5;color:#888;">Primaš ovaj mail jer si se prijavio/la na aiprobaj webinar. Ne želiš više ovakve mailove? <a href="${esc(url)}" style="color:#888;">Odjavi se</a>.</p>`
+    : "";
+  return `${odjava}
+      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK &middot; <a href="https://aiprobaj.com/privatnost" style="color:#888;">Privatnost</a></p>`;
+}
+
+export type MarketinskiIshod = "poslano" | "preskoceno" | "greska";
+
+// Svaki marketinski mail (obavijest o terminu, podsjetnik, snimka, novosti)
+// ide kroz ovu funkciju: provjera odjave i privole, List-Unsubscribe headeri
+// i link za odjavu u podnozju. html je sadrzaj bez podnozja.
+// vrsta "promo" ide samo onima s marketing_opt_in (vidi lib/odjava.ts).
+export async function sendMarketinskiMail(opts: {
+  to: string;
+  subject: string;
+  html: string;
+  vrsta: VrstaMaila;
+  replyTo?: string;
+}): Promise<MarketinskiIshod> {
+  const r = client();
+  if (!r) {
+    console.error("[email] RESEND_API_KEY nije postavljen; preskacem marketinski mail.");
+    return "greska";
+  }
+  const headers = odjavaHeaders(opts.to);
+  if (!headers) {
+    // Bez odjave marketinski mail ne smije van.
+    console.error("[email] nema ODJAVA_SECRET; marketinski mail NIJE poslan:", opts.subject);
+    return "greska";
+  }
+  if (!(await smijeSlati(opts.to, opts.vrsta))) return "preskoceno";
+  try {
+    const { error } = await r.emails.send({
+      from: FROM,
+      to: opts.to,
+      subject: opts.subject,
+      html: `<div style="font-family:sans-serif;max-width:520px;">${opts.html}${podnozje(opts.to)}</div>`,
+      headers,
+      replyTo: opts.replyTo,
+    });
+    if (error) {
+      console.error("[email] marketinski mail error:", error);
+      return "greska";
+    }
+    return "poslano";
+  } catch (e) {
+    console.error("[email] marketinski mail threw:", e);
+    return "greska";
+  }
 }
 
 export interface NotifyPayload {
@@ -93,7 +160,9 @@ export async function sendPrijavaNotifikacija(p: NotifyPayload): Promise<boolean
   }
 }
 
-// Potvrda prijavljenom. waitlist=true: prvi termin popunjen, osoba je na listi
+// Potvrda prijavljenom (servisni mail, trazio ga je sam). Ne provjerava odjavu,
+// ali ima odjavu u podnozju i headerima, radi dosljednosti.
+// waitlist=true: prvi termin popunjen, osoba je na listi
 // cekanja za sljedeci termin (datum jos nije potvrdjen).
 export async function sendPrijavaPotvrda(
   ime: string,
@@ -110,7 +179,7 @@ export async function sendPrijavaPotvrda(
       <p style="font-size:15px;line-height:1.6;color:#333;">Tvoje mjesto na webinaru <b>${AI_MOZAK.naziv}</b> je rezervirano: ${AI_MOZAK.dan.toLowerCase()} ${AI_MOZAK.datum} u ${AI_MOZAK.sat}, online, oko ${AI_MOZAK.durationMin} minuta.</p>
       <p style="font-size:15px;line-height:1.6;color:#333;">Link za webinar saljemo na ovaj email prije pocetka. Snimku, kit i upute dobivaju svi prijavljeni, cak i ako ne mogu pratiti uzivo.</p>
       <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
-      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
+      ${podnozje(email)}
     </div>`;
     try {
       await r.emails.send({
@@ -118,6 +187,7 @@ export async function sendPrijavaPotvrda(
         to: email,
         subject: `Prijava zaprimljena - ${AI_MOZAK.naziv}, ${AI_MOZAK.datum} u ${AI_MOZAK.sat}`,
         html,
+        headers: odjavaHeaders(email) ?? undefined,
       });
     } catch (e) {
       console.error("[email] potvrda ai-mozak threw:", e);
@@ -131,7 +201,7 @@ export async function sendPrijavaPotvrda(
       <p style="font-size:15px;line-height:1.6;color:#333;">Prvi termin aiprobaj webinara je popunjen, ali si sad na listi cekanja za sljedeci.</p>
       <p style="font-size:15px;line-height:1.6;color:#333;">Cim potvrdimo datum sljedeceg termina, javljamo ti ga na ovaj email prije nego krene javna prijava. Popis AI alata i resursa svejedno stize na email.</p>
       <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
-      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
+      ${podnozje(email)}
     </div>`
     : `
     <div style="font-family:sans-serif;max-width:520px;">
@@ -139,7 +209,7 @@ export async function sendPrijavaPotvrda(
       <p style="font-size:15px;line-height:1.6;color:#333;">Tvoje mjesto na aiprobaj webinaru je rezervirano.</p>
       <p style="font-size:15px;line-height:1.6;color:#333;">Zoom link i sve detalje saljemo na ovaj email prije pocetka. Snimku dobivaju svi prijavljeni, cak i ako ne mogu pratiti uzivo.</p>
       <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
-      <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
+      ${podnozje(email)}
     </div>`;
   try {
     await r.emails.send({
@@ -149,6 +219,7 @@ export async function sendPrijavaPotvrda(
         ? "Na listi si za sljedeci aiprobaj webinar"
         : "Prijava zaprimljena - aiprobaj webinar",
       html,
+      headers: odjavaHeaders(email) ?? undefined,
     });
   } catch (e) {
     console.error("[email] potvrda threw:", e);
