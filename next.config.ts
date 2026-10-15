@@ -11,6 +11,8 @@ const csp = [
   "img-src 'self' data: blob:",
   "media-src 'self' https://vz-1f861c1a-e2a.b-cdn.net",
   "connect-src 'self' https://*.supabase.co https://vz-1f861c1a-e2a.b-cdn.net",
+  // Google Kalendar (rezervacija konzultacija na /konzultacija)
+  "frame-src https://calendar.google.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -19,6 +21,9 @@ const csp = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [{ source: "/konzultacije", destination: "/konzultacija", permanent: true }];
+  },
   async headers() {
     return [
       {
