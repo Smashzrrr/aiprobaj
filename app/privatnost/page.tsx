@@ -160,8 +160,9 @@ export default function Privatnost() {
           god nastupi prije.
         </li>
         <li>
-          Nakon odjave čuvamo samo email adresu s oznakom odjave, koliko god
-          vodimo listu prijava, da ti ne bismo ponovno pisali <Potvrditi />.
+          Nakon odjave ostale podatke prijave brišemo najkasnije u roku od 30
+          dana, a čuvamo samo email adresu s oznakom odjave, koliko god vodimo
+          listu prijava, da ti ne bismo ponovno pisali <Potvrditi />.
         </li>
         <li>
           Zapis privola (vrijeme, IP adresa, verzija teksta) čuvamo dok traje
