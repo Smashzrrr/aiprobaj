@@ -38,8 +38,8 @@ export const AI_MOZAK = {
   sat: "18:00",
   durationMin: 60,
   // Brojac na /ai-mozak: skala 1-500. Broji prijave s izvorom "ai-mozak" plus
-  // cijelu listu cekanja (izvor "waitlist", sve od pocetka, 85 na 15.10.). Email je u bazi
+  // listu cekanja (izvor "waitlist") od 22.07. 17:00, prije toga su pozvani na prvi webinar (22 na 15.10.). Email je u bazi
   // jedinstven, pa ponovna prijava s /ai-mozak samo prebaci izvor i ne duplira.
   spotsTotal: 500,
-  waitlistFromISO: "2026-07-01T00:00:00+02:00",
+  waitlistFromISO: "2026-07-22T17:00:00+02:00",
 } as const;
