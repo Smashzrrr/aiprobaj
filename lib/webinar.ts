@@ -25,3 +25,16 @@ export function webinarDate(): Date {
 export function isPast(now: number = Date.now()): boolean {
   return webinarDate().getTime() - now <= 0;
 }
+
+// Webinar "Postavi AI mozak" (landing /ai-mozak). Termin je okviran dok ga
+// Ivan Radica i Bobi ne potvrde: promijeni ovdje, mijenja se i stranica i potvrda.
+export const AI_MOZAK = {
+  slug: "ai-mozak",
+  naziv: "Postavi AI mozak",
+  // CET (+01:00): zimsko vrijeme krece 25.10.2026.
+  dateISO: "2026-10-28T18:00:00+01:00",
+  dan: "Srijeda",
+  datum: "28.10.",
+  sat: "18:00",
+  durationMin: 60,
+} as const;

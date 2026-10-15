@@ -11,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-07-01"),
     },
     {
+      url: `${SITE}/ai-mozak`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      lastModified: new Date("2026-10-10"),
+    },
+    {
       url: `${SITE}/privatnost`,
       changeFrequency: "yearly",
       priority: 0.3,
