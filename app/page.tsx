@@ -4,7 +4,8 @@ import Countdown from "@/components/Countdown";
 import SpotsBar from "@/components/SpotsBar";
 import MobileNav from "@/components/MobileNav";
 import IntroVideo from "@/components/IntroVideo";
-import { WEBINAR } from "@/lib/webinar";
+import { WEBINAR, AI_MOZAK, PROMO_AI_MOZAK, PROMO_HREF } from "@/lib/webinar";
+import SljedeciWebinarCard from "@/components/SljedeciWebinarCard";
 import {
   PILLARS,
   OUTCOMES,
@@ -26,6 +27,11 @@ const MONO = "var(--font-mono), 'Space Mono', monospace";
 
 // Prvi termin popunjen -> CTA-ovi vode na listu cekanja (vidi lib/webinar.ts).
 const WL = WEBINAR.waitlistMode;
+
+// Naslovnica promovira AI mozak webinar (vidi lib/webinar.ts, PROMO_AI_MOZAK).
+const PROMO = PROMO_AI_MOZAK;
+const CTA_HREF = PROMO ? PROMO_HREF : "#prijava";
+const TERMIN_PROMO = `${AI_MOZAK.dan.toLowerCase()} ${AI_MOZAK.datum} u ${AI_MOZAK.sat}`;
 
 // Shared input base style (used in PrijavaForm, referenced here for structural fidelity)
 const TAG_PILL: React.CSSProperties = {
@@ -145,7 +151,7 @@ export default function Page() {
           {/* Right side: CTA + mobile hamburger */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
             <a
-              href="#prijava"
+              href={CTA_HREF}
               style={{
                 textDecoration: "none",
                 background: "var(--accent)",
@@ -159,7 +165,7 @@ export default function Page() {
                 whiteSpace: "nowrap",
               }}
             >
-              {WL ? "Lista čekanja" : "Rezerviraj mjesto"}
+              {PROMO ? `Prijava · ${AI_MOZAK.datum}` : WL ? "Lista čekanja" : "Rezerviraj mjesto"}
             </a>
             {/* MobileNav renders hamburger button + dropdown (client island) */}
             <MobileNav />
@@ -277,7 +283,7 @@ export default function Page() {
 
             {/* SpotsBar island */}
             <div style={{ margin: "16px 0 0", maxWidth: 360 }}>
-              <SpotsBar variant="hero" />
+              {!PROMO && <SpotsBar variant="hero" />}
             </div>
 
             {/* Trust line */}
@@ -335,7 +341,7 @@ export default function Page() {
               scrollMarginTop: 88,
             }}
           >
-            <PrijavaForm />
+            {PROMO ? <SljedeciWebinarCard /> : <PrijavaForm />}
           </div>
         </div>
       </section>
@@ -1466,7 +1472,7 @@ export default function Page() {
                 color: "var(--hot)",
               }}
             >
-              {WL ? "// Prvi termin popunjen" : "// Ograničena mjesta"}
+              {PROMO ? "// Sljedeći webinar" : WL ? "// Prvi termin popunjen" : "// Ograničena mjesta"}
             </div>
             <h2
               style={{
@@ -1479,7 +1485,7 @@ export default function Page() {
                 color: "var(--ink)",
               }}
             >
-              {WL ? "Prvi termin je popunjen" : "Broj mjesta je ograničen"}
+              {PROMO ? `${AI_MOZAK.naziv}: ${TERMIN_PROMO}` : WL ? "Prvi termin je popunjen" : "Broj mjesta je ograničen"}
             </h2>
             <p
               style={{
@@ -1490,12 +1496,14 @@ export default function Page() {
                 maxWidth: 420,
               }}
             >
-              {WL
+              {PROMO
+                ? "Uživo pokazujemo kako se postavlja AI koji zna tvoj posao. Besplatno, online, oko 60 minuta."
+                : WL
                 ? "Uskoči na listu čekanja i javljamo ti datum sljedećeg termina prvome."
                 : "Krećemo s malom grupom. Prijavi se i javljamo ti termin prvome."}
             </p>
             <a
-              href="#prijava"
+              href={CTA_HREF}
               style={{
                 marginTop: 22,
                 display: "inline-flex",
@@ -1512,7 +1520,7 @@ export default function Page() {
                 letterSpacing: "-0.01em",
               }}
             >
-              {WL ? "Na listu čekanja →" : "Rezerviraj mjesto →"}
+              {PROMO ? "Rezerviraj mjesto →" : WL ? "Na listu čekanja →" : "Rezerviraj mjesto →"}
             </a>
           </div>
 
@@ -1521,7 +1529,7 @@ export default function Page() {
             <Countdown variant="urgency" />
             {/* SpotsBar island */}
             <div style={{ marginTop: 22 }}>
-              <SpotsBar variant="urgency" />
+              {!PROMO && <SpotsBar variant="urgency" />}
             </div>
           </div>
         </div>
@@ -1667,12 +1675,14 @@ export default function Page() {
               color: "rgba(10,10,10,0.72)",
             }}
           >
-            {WL
+            {PROMO
+              ? `Sljedeći webinar: ${AI_MOZAK.naziv}, ${TERMIN_PROMO}. Besplatno, online.`
+              : WL
               ? "Prvi termin je popunjen. Uhvati mjesto u sljedećem, javljamo ti datum čim ga potvrdimo."
               : "Rezerviraj svoje besplatno mjesto i nauči AI od ljudi koji ga koriste svaki dan."}
           </p>
           <a
-            href="#prijava"
+            href={CTA_HREF}
             style={{
               marginTop: 30,
               display: "inline-flex",
@@ -1689,7 +1699,7 @@ export default function Page() {
               letterSpacing: "-0.01em",
             }}
           >
-            {WL ? "Na listu čekanja →" : "Rezerviraj besplatno mjesto →"}
+            {PROMO ? "Rezerviraj besplatno mjesto →" : WL ? "Na listu čekanja →" : "Rezerviraj besplatno mjesto →"}
           </a>
           <div
             style={{
@@ -1787,7 +1797,7 @@ export default function Page() {
               </a>
             ))}
             <a
-              href="#prijava"
+              href={CTA_HREF}
               style={{
                 textDecoration: "none",
                 fontSize: 14,

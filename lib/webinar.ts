@@ -43,3 +43,14 @@ export const AI_MOZAK = {
   spotsTotal: 500,
   waitlistFromISO: "2026-07-22T17:00:00+02:00",
 } as const;
+
+// Naslovnica promovira AI mozak webinar: kartica u heroju, CTA-ovi vode na
+// /ai-mozak, odbrojavanje do AI_MOZAK termina, brojac liste cekanja skriven.
+// Nakon webinara (28.10.) postavi na false i naslovnica se vraca na WEBINAR.
+export const PROMO_AI_MOZAK = true;
+export const PROMO_HREF = "/ai-mozak";
+
+// Termin na koji odbrojava Countdown.
+export function countdownDate(): Date {
+  return new Date(PROMO_AI_MOZAK ? AI_MOZAK.dateISO : WEBINAR.dateISO);
+}
