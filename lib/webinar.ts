@@ -37,6 +37,11 @@ export const AI_MOZAK = {
   datum: "28.10.",
   sat: "18:00",
   durationMin: 60,
+  // Brojac na /ai-mozak: skala 1-500. Broji prijave s izvorom "ai-mozak" plus
+  // listu cekanja (izvor "waitlist") od 22.07. 17:00, prije toga su pozvani na prvi webinar (22 na 15.10.). Email je u bazi
+  // jedinstven, pa ponovna prijava s /ai-mozak samo prebaci izvor i ne duplira.
+  spotsTotal: 500,
+  waitlistFromISO: "2026-07-22T17:00:00+02:00",
 } as const;
 
 // Naslovnica promovira AI mozak webinar: kartica u heroju, CTA-ovi vode na
