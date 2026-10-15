@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AI_MOZAK } from "@/lib/webinar";
 
 interface Mjesta {
   taken: number;
@@ -12,24 +11,32 @@ interface Mjesta {
 // Brojac za /ai-mozak, isti izgled kao "urgency" brojac na glavnoj stranici:
 // "Rezervirano mjesta X / 500" + traka. Stil u ai-mozak.css (.am .spots*).
 export default function AiMozakSpots() {
-  const [m, setM] = useState<Mjesta>({
-    taken: 0,
-    total: AI_MOZAK.spotsTotal,
-    left: AI_MOZAK.spotsTotal,
-  });
+  const [m, setM] = useState<Mjesta | null>(null);
 
   useEffect(() => {
     let alive = true;
-    fetch("/api/mjesta-ai-mozak")
-      .then((r) => r.json())
-      .then((d) => {
-        if (alive && d && typeof d.total === "number") setM(d);
-      })
-      .catch(() => {});
+    const load = () =>
+      fetch("/api/mjesta-ai-mozak", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          if (
+            alive && d &&
+            typeof d.taken === "number" && typeof d.total === "number" && typeof d.left === "number"
+          ) setM(d);
+        })
+        .catch(() => {});
+    load();
+    // Osvjezi svakih 60 s, da nova prijava bude vidljiva bez reloada.
+    const t = setInterval(load, 60_000);
     return () => {
       alive = false;
+      clearInterval(t);
     };
   }, []);
+
+  // Dok broj nije ucitan (ili baza ne odgovara) ne prikazujemo nista,
+  // da se ne vidi lazno "0 / 500".
+  if (!m) return null;
 
   const pct = m.total > 0 ? Math.min(100, Math.round((m.taken / m.total) * 100)) : 0;
 
