@@ -64,8 +64,8 @@ export default function Privatnost() {
 
       <h2 style={H2}>Svrha i pravna osnova</h2>
       <p style={P}>
-        Podatke obrađujemo isključivo radi organizacije webinara: slanja Zoom
-        linka i podsjetnika, snimke, te obećanih bonus materijala. Pravna osnova
+        Podatke obrađujemo isključivo radi organizacije webinara: slanja
+        linka za webinar i podsjetnika, snimke, te obećanih bonus materijala. Pravna osnova
         je tvoja privola (čl. 6. st. 1. t. a GDPR-a), koju daješ označavanjem
         kvačice pri prijavi.
       </p>
@@ -74,9 +74,9 @@ export default function Privatnost() {
       <p style={P}>
         Podatke ne prodajemo i ne dijelimo s trećima u marketinške svrhe.
         Koristimo pouzdane obrađivače isključivo za tehničku isporuku: Supabase
-        (pohrana podataka, poslužitelji u EU), Resend (slanje email poruka) i
-        Vercel Analytics (anonimna statistika posjeta, bez osobnih podataka).
-        Resend i Vercel su američke tvrtke, pa se prijenos podataka izvan EU
+        (pohrana podataka, poslužitelji u EU), Resend i Klaviyo (slanje email
+        poruka) te Vercel Analytics (anonimna statistika posjeta, bez osobnih
+        podataka). Resend, Klaviyo i Vercel su američke tvrtke, pa se prijenos podataka izvan EU
         odvija na temelju EU-US Data Privacy Framework, odnosno standardnih
         ugovornih klauzula. Pristup imaju samo Fraviz Studio i SEO LICK kao
         organizatori.
