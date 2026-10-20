@@ -65,6 +65,9 @@ export default function AiMozakForm() {
             Potvrda i link za webinar stižu ti na mail. Vidimo se:{" "}
             {AI_MOZAK.dan.toLowerCase()} {AI_MOZAK.datum} u {AI_MOZAK.sat}.
           </p>
+          <p>
+            Dok čekaš: pridruži se <a href="/skool">Skool zajednici</a>. Tamo su upute i paket nakon webinara.
+          </p>
         </div>
       </div>
     );

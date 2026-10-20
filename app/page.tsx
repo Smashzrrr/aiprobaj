@@ -6,6 +6,7 @@ import MobileNav from "@/components/MobileNav";
 import IntroVideo from "@/components/IntroVideo";
 import { WEBINAR, AI_MOZAK, PROMO_AI_MOZAK, PROMO_HREF } from "@/lib/webinar";
 import SljedeciWebinarCard from "@/components/SljedeciWebinarCard";
+import { SITE_NAV } from "@/lib/linkovi";
 import {
   PILLARS,
   OUTCOMES,
@@ -13,6 +14,7 @@ import {
   NOT_FOR,
   INSTRUCTORS,
   AGENDA,
+  TRI_PUTA,
   STATS,
   FAQ,
   MARQUEE_ITEMS,
@@ -44,9 +46,20 @@ const TAG_PILL: React.CSSProperties = {
   padding: "5px 11px",
 };
 
+const FAQ_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Page() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }} />
       {/* ── NAV ──────────────────────────────────────────────── */}
       <nav
         style={{
@@ -98,54 +111,21 @@ export default function Page() {
             className="desktop-nav-links"
             style={{ display: "flex", alignItems: "center", gap: 26 }}
           >
-            <a
-              href="#program"
-              style={{
-                textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 500,
-                color: "var(--ink-mut)",
-                padding: "12px 0",
-              }}
-            >
-              Program
-            </a>
-            <a
-              href="#predavaci"
-              style={{
-                textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 500,
-                color: "var(--ink-mut)",
-                padding: "12px 0",
-              }}
-            >
-              Predavači
-            </a>
-            <a
-              href="#agenda"
-              style={{
-                textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 500,
-                color: "var(--ink-mut)",
-                padding: "12px 0",
-              }}
-            >
-              Agenda
-            </a>
-            <a
-              href="#faq"
-              style={{
-                textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 500,
-                color: "var(--ink-mut)",
-                padding: "12px 0",
-              }}
-            >
-              FAQ
-            </a>
+            {SITE_NAV.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                style={{
+                  textDecoration: "none",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "var(--ink-mut)",
+                  padding: "12px 0",
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
           {/* Right side: CTA + mobile hamburger */}
@@ -245,8 +225,9 @@ export default function Page() {
                 color: "var(--ink-mut)",
               }}
             >
-              Besplatan webinar koji ti daje konkretne alate i znanje za rad s
-              AI-em: od osnova do naprednih tehnika.
+              {PROMO
+                ? "Besplatni webinari uživo, Skool zajednica i AI mozak koji zna tvoj posao. Od ljudi koji ga koriste u stvarnom poslu."
+                : "Besplatan webinar koji ti daje konkretne alate i znanje za rad s AI-em: od osnova do naprednih tehnika."}
             </p>
 
             {/* Bullets */}
@@ -512,7 +493,7 @@ export default function Page() {
                 color: "var(--ink)",
               }}
             >
-              Pet područja. Jedan webinar
+              Pet područja koja pokrivamo
             </h2>
             <p
               style={{
@@ -575,6 +556,21 @@ export default function Page() {
                   >
                     {pillar.desc}
                   </p>
+                  {PROMO && pillar.n === "03" && (
+                    <a
+                      href={PROMO_HREF}
+                      style={{
+                        display: "inline-block",
+                        marginTop: 10,
+                        fontSize: 15,
+                        fontWeight: 600,
+                        color: "var(--accent)",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Sljedeći webinar je baš o ovome →
+                    </a>
+                  )}
                   <div
                     style={{
                       marginTop: 14,
@@ -1061,7 +1057,7 @@ export default function Page() {
                   color: "var(--accent)",
                 }}
               >
-                {"// Agenda"}
+                {PROMO ? "// Tri puta s nama" : "// Agenda"}
               </div>
               <h2
                 style={{
@@ -1074,7 +1070,7 @@ export default function Page() {
                   color: "var(--ink)",
                 }}
               >
-                Kako izgleda webinar
+                {PROMO ? "Webinar, zajednica ili s nama" : "Kako izgleda webinar"}
               </h2>
               <p
                 style={{
@@ -1084,11 +1080,13 @@ export default function Page() {
                   color: "var(--ink-mut)",
                 }}
               >
-                ~90 minuta konkretnog sadržaja, uživo, plus Q&amp;A na kraju.
+                {PROMO
+                  ? "Kreni besplatno na webinaru, nastavi sam u Skool zajednici ili ga postavimo zajedno s tobom."
+                  : "~90 minuta konkretnog sadržaja, uživo, plus Q&A na kraju."}
               </p>
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              {["Online · Zoom", "~90 min", "Snimka uključena"].map((badge) => (
+              {(PROMO ? [] : ["Online · Zoom", "~90 min", "Snimka uključena"]).map((badge) => (
                 <span key={badge} style={TAG_PILL}>
                   {badge}
                 </span>
@@ -1097,10 +1095,12 @@ export default function Page() {
           </div>
 
           <div style={{ marginTop: 40, borderTop: "1px solid var(--line)" }}>
-            {AGENDA.map((item) => (
-              <div
+            {(PROMO ? TRI_PUTA : AGENDA).map((item) => (
+              <a
                 key={item.t}
+                href={"href" in item ? item.href : undefined}
                 style={{
+                  textDecoration: "none",
                   display: "grid",
                   gridTemplateColumns: "64px 1fr auto",
                   gap: 20,
@@ -1158,7 +1158,7 @@ export default function Page() {
                 >
                   {item.time}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -1619,6 +1619,14 @@ export default function Page() {
                   }}
                 >
                   {item.a}
+                  {"href" in item && (
+                    <>
+                      {" "}
+                      <a href={item.href} style={{ color: "var(--accent)" }}>
+                        {item.link} →
+                      </a>
+                    </>
+                  )}
                 </p>
               </details>
             ))}
@@ -1778,12 +1786,7 @@ export default function Page() {
             aria-label="Footer navigacija"
             style={{ display: "flex", gap: 22, flexWrap: "wrap", alignItems: "center" }}
           >
-            {[
-              { href: "#program", label: "Program" },
-              { href: "#predavaci", label: "Predavači" },
-              { href: "#agenda", label: "Agenda" },
-              { href: "#faq", label: "FAQ" },
-            ].map((link) => (
+            {[...SITE_NAV, { href: "#predavaci", label: "Predavači" }].map((link) => (
               <a
                 key={link.href}
                 href={link.href}
