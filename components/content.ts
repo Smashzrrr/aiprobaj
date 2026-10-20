@@ -139,11 +139,37 @@ export const AGENDA = [
   },
 ] as const;
 
+// Dok traje promo AI mozga, sekcija Agenda na naslovnici prikazuje ljestvicu
+// webinar -> Skool -> konzultacija umjesto programa prvog webinara.
+export const TRI_PUTA = [
+  {
+    t: "01",
+    title: "Webinar: Postavi AI mozak",
+    desc: "Uživo, na našem ekranu: od praznog foldera do AI-ja koji zna tvoj posao.",
+    time: "besplatno",
+    href: "/ai-mozak",
+  },
+  {
+    t: "02",
+    title: "Skool zajednica: postavi ga sam",
+    desc: "Paket i upute korak po korak, uz pitanja drugih polaznika.",
+    time: "besplatno",
+    href: "/skool",
+  },
+  {
+    t: "03",
+    title: "Konzultacija: postavimo ga s tobom",
+    desc: "30 minuta o tvom poslu i što AI mozak može preuzeti. Besplatno za polaznike webinara.",
+    time: "s nama",
+    href: "/konzultacija",
+  },
+] as const;
+
 export const STATS = [
   { n: "10+", l: "godina SEO iskustva u timu" },
   { n: "3", l: "stručnjaka koji AI koriste svaki dan" },
-  { n: "5", l: "područja u jednom webinaru" },
-  { n: "0 €", l: "cijena prvog webinara" },
+  { n: "300+", l: "bilješki u našem AI mozgu" },
+  { n: "0 €", l: "cijena webinara" },
 ] as const;
 
 export const FAQ = [
@@ -153,11 +179,11 @@ export const FAQ = [
   },
   {
     q: "Je li webinar stvarno besplatan?",
-    a: "Da. Prvi, uvodni webinar je potpuno besplatan.",
+    a: "Da. Webinari su besplatni, a snimku dobivaju svi prijavljeni.",
   },
   {
     q: "Gdje se održava?",
-    a: "Online, uživo putem Zooma. Link dobiješ na email prije početka.",
+    a: "Online, uživo. Link dobiješ na email prije početka.",
   },
   {
     q: "Hoću li dobiti snimku?",
@@ -165,11 +191,23 @@ export const FAQ = [
   },
   {
     q: "Koliko traje?",
-    a: "Oko 90 minuta sadržaja plus Q&A na kraju.",
+    a: "Oko sat vremena, s pitanjima na kraju.",
   },
   {
     q: "Za koga je ovo namijenjeno?",
     a: "Za sve: od potpunih početnika do naprednih korisnika, poduzetnika, marketingaša i developera.",
+  },
+  {
+    q: "Gdje mogu učiti sam, između webinara?",
+    a: "U besplatnoj Skool zajednici: lekcije korak po korak i pitanja drugih polaznika.",
+    href: "/skool",
+    link: "Skool zajednica",
+  },
+  {
+    q: "Možete li mi vi postaviti AI mozak?",
+    a: "Da. Polaznici webinara dobivaju besplatnu konzultaciju od 30 minuta: pogledamo tvoj posao i kažemo što ima smisla spojiti.",
+    href: "/konzultacija",
+    link: "Besplatna AI konzultacija",
   },
 ] as const;
 
@@ -186,6 +224,6 @@ export const MARQUEE_ITEMS = [
 
 export const HERO_BULLETS = [
   "Od potpunog početnika do naprednog",
-  "Uživo na Zoomu + snimka za sve prijavljene",
+  "Online, uživo + snimka za sve prijavljene",
   "Konkretni primjeri i alati koje koristimo svaki dan",
 ] as const;

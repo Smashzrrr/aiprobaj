@@ -23,30 +23,23 @@ export const metadata: Metadata = {
     title: `${AI_MOZAK.naziv}: besplatni webinar, ${AI_MOZAK.dan.toLowerCase()} ${AI_MOZAK.datum} u ${AI_MOZAK.sat}`,
     description: OPIS,
     locale: "hr_HR",
+    // Neutralni vizual webinara (bez lica). Bez njega LinkedIn uzima prvu sliku sa stranice.
+    images: [{ url: "/og/ai-mozak.png", width: 1200, height: 628, alt: `${AI_MOZAK.naziv}: besplatni webinar, ${AI_MOZAK.datum} u ${AI_MOZAK.sat}` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${AI_MOZAK.naziv}: besplatni webinar, ${AI_MOZAK.datum} u ${AI_MOZAK.sat}`,
+    description: OPIS,
+    images: ["/og/ai-mozak.png"],
   },
 };
 
 const MARQUEE = ["Context engineering", "AI mozak", "Claude Code", "Obsidian", "Ingest", "Skillovi", "Privatnost", "Automatizacija"];
 
-const KORACI = [
-  { n: "01", h: "Zašto kontekst pobjeđuje prompt", p: "Isti zadatak dvaput: jednom u praznom chatu, jednom s kontekstom. Razliku vidiš odmah.", c: ["Context engineering", "Primjer"] },
-  { n: "02", h: "Postavljanje paketa", p: "Gotova struktura mozga otvorena u VS Codeu i Obsidianu, s pravilima koja AI čita prije svakog razgovora.", c: ["Claude Code", "Obsidian", "Pravila"] },
-  { n: "03", h: "Prvi unos znanja", p: "AI intervjuira i sam piše stranice: tko si, kako pišeš, koji su ti ciljevi i projekti. Diktat je dovoljan.", c: ["O meni", "Glas", "Ciljevi"] },
-  { n: "04", h: "Prvi dokument i prvo pitanje", p: "Dokument postaje povezane bilješke. Onda isto pitanje postavimo praznom chatu i mozgu.", c: ["Ingest", "Pitanja", "Graf"] },
-  { n: "05", h: "Kako izgleda nakon par mjeseci", p: "Stvarni AI mozak agencije: 300+ bilješki, jutarnji brief na mobitelu i AI koji piše ponude jer već zna klijenta.", c: ["Stvarni primjer", "Automatizacija"] },
-];
-
 const PREDAVACI = [
   { img: "/predavaci/ivan-radica.webp", ime: "Ivan Radica", uloga: "Suosnivač i CEO, SEO LICK", p: "Agenciju vodi uz AI mozak s 300+ bilješki o klijentima, odlukama i procesima.", chip: "AI mozak u praksi" },
   { img: "/predavaci/marko-smolcic-uzunovic.webp", ime: "Marko Smolčić Uzunović", uloga: "Suosnivač i CTO, SEO LICK", p: "Uvodi AI mozak cijelom timu SEO LICK-a, od strukture do svakodnevnog rada.", chip: "Struktura i postava" },
   { img: "/predavaci/ivan-bobanovic.webp", ime: "Ivan Bobanović", uloga: "Osnivač, Fraviz Studio", p: "Testirao je sve relevantne AI modele i gradio AI arhitekture za tvrtke.", chip: "AI arhitektura" },
-];
-
-const AGENDA = [
-  { n: "00", h: "Zašto kontekst", p: "Context engineering bez teorije radi teorije: što AI treba znati i gdje to zapisati.", t: "~15 min" },
-  { n: "01", h: "Postavljanje uživo", p: "Paket, prvi unos znanja, prvi dokument i prvo pitanje, na našem ekranu.", t: "~30 min" },
-  { n: "02", h: "Kako dalje", p: "Kako ga postaviti sam i što ako želiš da ga postavimo s tobom.", t: "~5 min" },
-  { n: "03", h: "Pitanja", p: "Odgovaramo uživo.", t: "~10 min" },
 ];
 
 const ZAMISLI = [
@@ -56,16 +49,17 @@ const ZAMISLI = [
   "planera koji ti ujutro kaže što je danas najvažnije",
 ];
 
-const FAQ = [
+const FAQ: [string, string, string?, string?][] = [
   ["Radi li ovo za moju branšu?", "Da, ako radiš s puno znanja: klijenti, ponude, procesi, odluke. Paket je napravljen neutralno na branšu. Mi ga koristimo u agenciji, a postavili smo ga i za praksu nutricionistice."],
   ["Koliko vremena traži?", "Postavljanje oko sat vremena, prvi unos znanja pola sata. Poslije toga par minuta ujutro i par minuta navečer."],
   ["Trebam li znati programirati?", "Ne. Sve što pokazujemo radi se klikom i kopiranjem teksta."],
-  ["Moram li išta instalirati prije webinara?", "Ne. Na webinaru samo gledaš. Upute za postavljanje dobiješ poslije, u Skool zajednici."],
+  ["Gdje se održava?", "Online, na Google Meetu. Link ti stiže mailom prije početka."],
+  ["Moram li išta instalirati prije webinara?", "Ne. Na webinaru samo gledaš. Upute za postavljanje dobiješ poslije, u Skool zajednici.", "/skool", "Skool zajednica"],
   ["Što mi treba za vlastiti AI mozak?", "Laptop (Mac ili Windows) i Claude Pro, 20 USD mjesečno. VS Code i Obsidian su besplatni."],
   ["Mogu li umjesto Claudea koristiti ChatGPT?", "Paket je napravljen za Claude Code. Bilješke su obični tekstualni fileovi pa ih može čitati bilo koji AI, ali naredbe su pisane za Claude."],
   ["Je li webinar besplatan?", "Da. Konzultacija za polaznike je također besplatna."],
   ["Što je s privatnošću?", "Mozak živi na tvom laptopu. Ono što AI pročita šalje se na obradu, zato pokazujemo što u mozak ide, a što ne."],
-  ["Možete li mi vi postaviti AI mozak?", "Da. O tome je besplatna konzultacija za polaznike: pogledamo tvoj posao i kažemo što ima smisla spojiti."],
+  ["Možete li mi vi postaviti AI mozak?", "Da. O tome je besplatna konzultacija za polaznike: pogledamo tvoj posao i kažemo što ima smisla spojiti.", "/konzultacija", "Besplatna AI konzultacija"],
   ["Što ako ne stignem uživo?", "Prijavi se svejedno. Snimka i upute stižu ti na mail."],
 ];
 
@@ -102,9 +96,9 @@ export default function AiMozakPage() {
             <span className="ai">ai</span>probaj<span className="com">.com</span>
           </Link>
           <div className="navlinks">
-            <a href="#program">Što ćeš vidjeti</a>
+            <Link href="/skool">Skool zajednica</Link>
+            <Link href="/konzultacija">Konzultacija</Link>
             <a href="#predavaci">Predavači</a>
-            <a href="#agenda">Agenda</a>
             <a href="#faq">FAQ</a>
           </div>
           <a className="btn" href="#prijava">Rezerviraj mjesto</a>
@@ -126,9 +120,10 @@ export default function AiMozakPage() {
               Uživo pokazujemo kako se postavlja AI mozak: od praznog foldera do AI-ja koji zna tko si, na čemu radiš i kako pišeš. Prije nego ga išta pitaš.
             </p>
             <ul className="checks">
-              <li>Online, oko {AI_MOZAK.durationMin} minuta, snimka za sve prijavljene</li>
-              <li>Postavljanje uživo, na našem ekranu, korak po korak</li>
-              <li>Paket i upute za tvoj AI mozak nakon webinara</li>
+              <li>Isti zadatak dvaput: u praznom chatu i u AI-ju s mozgom</li>
+              <li>Postavljanje uživo: paket, prvi unos znanja i prvo pitanje</li>
+              <li>AI mozak agencije nakon par mjeseci: 300+ bilješki u radu</li>
+              <li>Google Meet, oko {AI_MOZAK.durationMin} minuta, snimka za sve prijavljene</li>
             </ul>
             <AiMozakSpots />
             <div className="from">
@@ -232,37 +227,16 @@ export default function AiMozakPage() {
         </div>
       </section>
 
-      {/* === STO CES VIDJETI === */}
-      <section className="sec" id="program">
-        <div className="wrap">
-          <span className="kicker">{"// Što ćeš vidjeti"}</span>
-          <h2>Od praznog foldera do AI-ja koji zna tvoj posao</h2>
-          <p className="sub">Kratko objasnimo zašto je kontekst važniji od prompta. Ostatak vremena radimo na svom ekranu.</p>
-          <div className="rows">
-            {KORACI.map((k) => (
-              <div className="row" key={k.n}>
-                <span className="n">{k.n}</span>
-                <div>
-                  <h3>{k.h}</h3>
-                  <p>{k.p}</p>
-                  <div className="chips">{k.c.map((c) => <span className="chip" key={c}>{c}</span>)}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* === STO DOBIVAS === */}
       <section className="sec">
         <div className="wrap">
           <span className="kicker">{"// Što dobivaš"}</span>
           <h2>Gledaš uživo, a postaviš kad stigneš</h2>
           <div className="gets">
-            <div className="get"><span className="ic">[ paket ]</span><h3>Paket AI mozga</h3><p>Struktura, pravila i 7 naredbi. Skineš, otvoriš i kreneš.</p></div>
+            <div className="get"><span className="ic">[ paket ]</span><h3>Paket AI mozga</h3><p>Struktura, pravila i 7 naredbi. Stiže nakon webinara.</p></div>
             <div className="get"><span className="ic">[ snimka ]</span><h3>Snimka webinara</h3><p>Stiže svim prijavljenima. Ne moraš stići uživo.</p></div>
-            <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u Skool zajednici: postavljanje, unos znanja i automatski ritam.</p></div>
-            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. Vrijedi za prijave do ponoći na dan webinara.</p></div>
+            <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u <Link href="/skool">Skool zajednici</Link>: postavljanje, unos znanja i automatski ritam.</p></div>
+            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. <Link href="/konzultacija">Termin rezerviraš</Link> do ponoći na dan webinara.</p></div>
           </div>
         </div>
       </section>
@@ -312,39 +286,24 @@ export default function AiMozakPage() {
         </div>
       </section>
 
-      {/* === AGENDA === */}
-      <section className="sec agenda" id="agenda">
-        <div className="wrap">
-          <span className="kicker">{"// Agenda"}</span>
-          <h2>Kako izgleda webinar</h2>
-          <div className="meta">
-            <span className="chip">{TERMIN}</span>
-            <span className="chip">Online</span>
-            <span className="chip">~{AI_MOZAK.durationMin} min</span>
-            <span className="chip">Snimka uključena</span>
-          </div>
-          <div className="rows">
-            {AGENDA.map((a) => (
-              <div className="row" key={a.n}>
-                <span className="n">{a.n}</span>
-                <div><h3>{a.h}</h3><p>{a.p}</p></div>
-                <span className="t">{a.t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* === FAQ === */}
       <section className="sec" id="faq">
         <div className="wrap">
           <span className="kicker">{"// FAQ"}</span>
           <h2>Česta pitanja</h2>
           <div className="faq">
-            {FAQ.map(([q, a]) => (
+            {FAQ.map(([q, a, href, label]) => (
               <details key={q}>
                 <summary>{q}</summary>
-                <p>{a}</p>
+                <p>
+                  {a}
+                  {href && (
+                    <>
+                      {" "}
+                      <Link href={href}>{label} →</Link>
+                    </>
+                  )}
+                </p>
               </details>
             ))}
           </div>

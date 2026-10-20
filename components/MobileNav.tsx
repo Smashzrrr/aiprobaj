@@ -2,13 +2,9 @@
 
 import { useState } from "react";
 import { AI_MOZAK, PROMO_AI_MOZAK, PROMO_HREF } from "@/lib/webinar";
+import { SITE_NAV } from "@/lib/linkovi";
 
-const NAV_LINKS = [
-  { href: "#program", label: "Program" },
-  { href: "#predavaci", label: "Predavači" },
-  { href: "#agenda", label: "Agenda" },
-  { href: "#faq", label: "FAQ" },
-] as const;
+const NAV_LINKS = SITE_NAV;
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);

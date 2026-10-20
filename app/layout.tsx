@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: "Besplatni AI webinar na hrvatskom | aiprobaj.com",
   description:
-    "Nauči raditi s AI-em od praktičara. Pet područja u jednom webinaru: AI osnove i napredni rad, AI arhitektura, SEO/AEO/GEO i sigurnost. Besplatno, online, uživo.",
+    "Nauči raditi s AI-em od praktičara, na hrvatskom: besplatni webinari uživo, Skool zajednica i AI mozak koji zna tvoj posao.",
   keywords: [
     "AI webinar",
     "naučiti AI",
@@ -41,12 +41,12 @@ export const metadata: Metadata = {
     locale: "hr_HR",
     title: "Besplatni AI webinar na hrvatskom | aiprobaj.com",
     description:
-      "Nauči raditi s AI-em od praktičara. Pet područja u jednom webinaru. Prijavi se, mjesta su ograničena.",
+      "Nauči raditi s AI-em od praktičara, na hrvatskom: besplatni webinari uživo, Skool zajednica i AI mozak koji zna tvoj posao.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Besplatni AI webinar na hrvatskom | aiprobaj.com",
-    description: "Nauči raditi s AI-em od praktičara. Pet područja u jednom webinaru.",
+    description: "Nauči raditi s AI-em od praktičara, na hrvatskom: besplatni webinari, Skool zajednica i AI mozak.",
   },
   robots: { index: true, follow: true },
   verification: {
@@ -92,6 +92,7 @@ const eventNode = {
   },
 };
 
+// FAQPage je na naslovnici (app/page.tsx), iz istog FAQ-a koji se prikazuje.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -106,21 +107,6 @@ const jsonLd = {
         { "@type": "Person", name: "Ivan Bobanović" },
         { "@type": "Person", name: "Ivan Radica" },
       ],
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: [
-        ["Trebam li ikakvo predznanje?", "Ne. Krećemo od nule i idemo sve do naprednih tehnika, korak po korak."],
-        ["Je li webinar stvarno besplatan?", "Da. Prvi, uvodni webinar je potpuno besplatan."],
-        ["Gdje se održava?", "Online, uživo putem Zooma. Link dobiješ na email prije početka."],
-        ["Hoću li dobiti snimku?", "Da. Svi prijavljeni dobivaju snimku, čak i ako ne mogu pratiti uživo."],
-        ["Koliko traje?", "Oko 90 minuta sadržaja plus Q&A na kraju."],
-        ["Za koga je ovo namijenjeno?", "Za sve, od potpunih početnika do naprednih korisnika, poduzetnika, marketingaša i developera."],
-      ].map(([q, a]) => ({
-        "@type": "Question",
-        name: q,
-        acceptedAnswer: { "@type": "Answer", text: a },
-      })),
     },
   ],
 };
