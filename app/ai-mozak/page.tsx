@@ -236,7 +236,7 @@ export default function AiMozakPage() {
             <div className="get"><span className="ic">[ paket ]</span><h3>Paket AI mozga</h3><p>Struktura, pravila i 7 naredbi. Stiže nakon webinara.</p></div>
             <div className="get"><span className="ic">[ snimka ]</span><h3>Snimka webinara</h3><p>Stiže svim prijavljenima. Ne moraš stići uživo.</p></div>
             <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u <Link href="/skool">Skool zajednici</Link>: postavljanje, unos znanja i automatski ritam.</p></div>
-            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. <Link href="/konzultacija">Termin rezerviraš</Link> do ponoći na dan webinara.</p></div>
+            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. <Link href="/konzultacija">Termin rezerviraš</Link> do {AI_MOZAK.konzultacijaDo}, dan nakon webinara.</p></div>
           </div>
         </div>
       </section>

@@ -21,7 +21,7 @@ const KORACI = [
 ];
 
 const FAQ = [
-  ["Je li stvarno besplatno?", "Da, za polaznike webinara, jedan termin po osobi. Svaka sljedeća konzultacija je 100 € po satu."],
+  ["Je li stvarno besplatno?", `Da, za polaznike webinara koji termin rezerviraju do ${AI_MOZAK.konzultacijaDo}. Jedan termin po osobi. Inače konzultacije naplaćujemo 100 € po satu.`],
   ["Moram li nešto pripremiti?", "Popis alata koje koristiš i dva ili tri zadatka koja ti uzimaju najviše vremena. Ništa više."],
   ["Hoćete li mi nešto prodavati?", "Reći ćemo ti što ima smisla napraviti sam, a što s nama. Odluka je tvoja."],
   ["Gdje se održava?", "Online, preko Google Meeta. Link stiže u pozivnici kalendara."],
@@ -58,7 +58,7 @@ export default function KonzultacijaPage() {
             </p>
             <ul className="checks">
               <li>Inače 100 € po satu</li>
-              <li>Besplatno za polaznike webinara „{AI_MOZAK.naziv}“, uz prijavu do ponoći na dan webinara ({AI_MOZAK.datum})</li>
+              <li>Besplatno za polaznike webinara „{AI_MOZAK.naziv}“ ako termin rezerviraš do {AI_MOZAK.konzultacijaDo}, dan nakon webinara</li>
               <li>Jedan termin po osobi</li>
             </ul>
           </div>
