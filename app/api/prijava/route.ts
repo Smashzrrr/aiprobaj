@@ -4,6 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { allowRequest } from "@/lib/rateLimit";
 import { sendPrijavaNotifikacija, sendPrijavaPotvrda } from "@/lib/email";
 import { WEBINAR } from "@/lib/webinar";
+import { addPrijavaToKlaviyo } from "@/lib/klaviyo";
 
 export const runtime = "nodejs";
 
@@ -94,6 +95,7 @@ export async function POST(req: Request) {
     } catch (e) {
       console.error("[prijava] duplicate update threw:", e);
     }
+    await addPrijavaToKlaviyo({ ...data, izvor: data.webinar });
     try {
       await sendPrijavaNotifikacija({ ...data, dbFailed: false, ponovna: true });
     } catch (e) {
@@ -107,6 +109,9 @@ export async function POST(req: Request) {
   if (duplicate) {
     return NextResponse.json({ success: true, duplicate: true });
   }
+
+  // 5b. Klaviyo lista prijava (fail-open, vidi lib/klaviyo.ts)
+  await addPrijavaToKlaviyo({ ...data, izvor: record.izvor });
 
   // 6. Tier 2: obavijest nama (UVIJEK), s markerom ako je baza pala
   let emailSent = false;
