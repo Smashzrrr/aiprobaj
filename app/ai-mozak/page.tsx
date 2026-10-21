@@ -117,7 +117,7 @@ export default function AiMozakPage() {
               BESPLATNI WEBINAR · {TERMIN.toUpperCase()}
             </span>
             <h1>
-              Probaj <span className="lime">AI{" "}mozak</span>.
+              Izgradi <span className="lime">AI{" "}mozak</span>.
               <span className="h1-sub">Upravljaj timom agenata.</span>
             </h1>
             <p className="lead">
@@ -296,7 +296,7 @@ export default function AiMozakPage() {
         <div className="wrap">
           <span className="kicker">{`// ${TERMIN}`}</span>
           <h2>
-            Neka AI agenti rade umjesto tebe. <span className="lime">Probaj AI mozak.</span>
+            Neka AI agenti rade umjesto tebe. <span className="lime">Izgradi AI mozak.</span>
           </h2>
           <p>Ponuda gotova s mobitela, mailovi spremni u draftu, inbox pod kontrolom. To su sati i sati rada i živaca manje. A kad oslobodiš vrijeme i glavu, postaješ efikasniji i radiš ono što si oduvijek htio, umjesto da se gubiš u moru administracije.</p>
           <a className="btn" href="#prijava" style={{ fontSize: 17, padding: "17px 28px" }}>
