@@ -85,7 +85,7 @@ export default function AiMozakForm() {
         <div className="bonus">
           <span className="dot" />
           <span>
-            <b>Samo za polaznike:</b> besplatna 30-minutna AI konzultacija za tvoj posao.
+            <b>Samo za polaznike:</b> besplatna 30-minutna AI konzultacija
           </span>
         </div>
         <h3>Rezerviraj mjesto</h3>

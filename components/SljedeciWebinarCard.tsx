@@ -55,7 +55,7 @@ export default function SljedeciWebinarCard() {
         Postavi <span style={{ color: "var(--accent)" }}>AI mozak</span>
       </h3>
       <p style={{ margin: "12px 0 0", fontSize: 15, lineHeight: 1.55, color: "var(--ink-mut)" }}>
-        {AI_MOZAK.dan} {AI_MOZAK.datum} u {AI_MOZAK.sat} · Google Meet · oko {AI_MOZAK.durationMin} minuta · besplatno
+        {AI_MOZAK.dan} {AI_MOZAK.datum} u {AI_MOZAK.sat} · Google Meet · {AI_MOZAK.trajanje} minuta · besplatno
       </p>
       <ul style={{ listStyle: "none", margin: "18px 0 0", padding: 0, display: "grid", gap: 9 }}>
         {STAVKE.map((s) => (

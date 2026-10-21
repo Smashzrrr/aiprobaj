@@ -26,6 +26,14 @@ export async function GET() {
   } catch (e) {
     console.error("[mjesta-ai-mozak] threw:", e);
   }
+  // Lokalni razvoj bez Supabase kljuceva: stvarni broj s produkcije, samo za pregled.
+  if (taken === null && process.env.NODE_ENV === "development" && !process.env.SUPABASE_URL) {
+    try {
+      const r = await fetch("https://aiprobaj.com/api/mjesta-ai-mozak", { cache: "no-store" });
+      const d = r.ok ? await r.json() : null;
+      if (d && typeof d.taken === "number") taken = d.taken;
+    } catch {}
+  }
   const total = AI_MOZAK.spotsTotal;
   if (taken === null) {
     // Greska baze ne smije izgledati kao "0 prijavljenih".

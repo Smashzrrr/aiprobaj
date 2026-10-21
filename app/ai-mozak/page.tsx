@@ -10,7 +10,7 @@ import "./ai-mozak.css";
 
 const TERMIN = `${AI_MOZAK.dan} ${AI_MOZAK.datum} · ${AI_MOZAK.sat}`;
 const OPIS =
-  "Besplatni webinar: uživo pokazujemo kako se postavlja AI mozak, od praznog foldera do AI-ja koji zna tvoj posao. Context engineering u praksi.";
+  "Besplatni webinar: uživo pokazujemo kako radi AI mozak i kako orkestrira tim cloud agenata koji rade 24/7. Context engineering u praksi.";
 
 export const metadata: Metadata = {
   title: `${AI_MOZAK.naziv} | Besplatni AI webinar | aiprobaj.com`,
@@ -34,19 +34,24 @@ export const metadata: Metadata = {
   },
 };
 
-const MARQUEE = ["Context engineering", "AI mozak", "Claude Code", "Obsidian", "Ingest", "Skillovi", "Privatnost", "Automatizacija"];
-
 const PREDAVACI = [
-  { img: "/predavaci/ivan-radica.webp", ime: "Ivan Radica", uloga: "Suosnivač i CEO, SEO LICK", p: "Agenciju vodi uz AI mozak s 300+ bilješki o klijentima, odlukama i procesima.", chip: "AI mozak u praksi" },
-  { img: "/predavaci/marko-smolcic-uzunovic.webp", ime: "Marko Smolčić Uzunović", uloga: "Suosnivač i CTO, SEO LICK", p: "Uvodi AI mozak cijelom timu SEO LICK-a, od strukture do svakodnevnog rada.", chip: "Struktura i postava" },
+  { img: "/predavaci/ivan-radica-zg.webp", ime: "Ivan Radica", uloga: "Suosnivač i CEO, SEO LICK", p: "Agenciju vodi uz AI mozak s 300+ bilješki o klijentima, odlukama i procesima.", chip: "AI mozak u praksi" },
+  { img: "/predavaci/marko-smolcic-uzunovic-zg.webp", ime: "Marko Smolčić Uzunović", uloga: "Suosnivač i CTO, SEO LICK", p: "Uvodi AI mozak cijelom timu SEO LICK-a, od strukture do svakodnevnog rada.", chip: "Struktura i postava" },
   { img: "/predavaci/ivan-bobanovic.webp", ime: "Ivan Bobanović", uloga: "Osnivač, Fraviz Studio", p: "Testirao je sve relevantne AI modele i gradio AI arhitekture za tvrtke.", chip: "AI arhitektura" },
 ];
 
 const ZAMISLI = [
-  "asistenta koji ne zaboravlja nijednog klijenta",
-  "copywritera koji već piše kao ti",
-  "analitičara koji zna svaku tvoju odluku i zašto",
-  "planera koji ti ujutro kaže što je danas najvažnije",
+  { h: "Ponuda s mobitela", p: "Ono što bi 2 sata pisao na laptopu, dobiješ 90% gotovo preko mobitela. Ti samo dotjeraš." },
+  { h: "Mailovi spremni u draftu", p: "Odgovori te čekaju 80% spremni za slanje. Pregledaš, dotjeraš, pošalješ." },
+  { h: "Asistentica za inbox", p: "Prati sve što ti stiže i pomaže ti složiti što je danas važno." },
+  { h: "Web i newsletter", p: "Agent radi izmjene na webu i slaže newsletter, a ti samo odobriš." },
+];
+
+// Tko još govori o context engineeringu. Parafraze javnih izjava, ne citati.
+const GLASOVI = [
+  { ime: "Tobi Lütke", uloga: "CEO, Shopify", p: "Context engineering mu je bolji pojam od prompt engineeringa: vještina da AI dobije sav kontekst koji treba za zadatak." },
+  { ime: "Anthropic", uloga: "Tvorci Claudea", p: "Context engineering opisuju kao ključ za AI agente koji rade pouzdano i na duže staze." },
+  { ime: "Ante Dagelić", uloga: "Unicorn Marketing Meetup, Split", p: "Context engineering nazvao je jednom od najgorućih tema u AI-ju trenutačno." },
 ];
 
 const FAQ: [string, string, string?, string?][] = [
@@ -114,54 +119,39 @@ export default function AiMozakPage() {
               BESPLATNI WEBINAR · {TERMIN.toUpperCase()}
             </span>
             <h1>
-              Postavi <span className="lime">AI{" "}mozak</span> koji zna tvoj posao
+              Probaj <span className="lime">AI{" "}mozak</span>.
+              <span className="h1-sub">Upravljaj timom agenata.</span>
             </h1>
             <p className="lead">
-              Uživo pokazujemo kako se postavlja AI mozak: od praznog foldera do AI-ja koji zna tko si, na čemu radiš i kako pišeš. Prije nego ga išta pitaš.
+              Uživo ćeš vidjeti kako radi AI mozak i kako orkestrira tim cloud agenata koji rade 24/7.
             </p>
             <ul className="checks">
-              <li>Isti zadatak dvaput: u praznom chatu i u AI-ju s mozgom</li>
-              <li>Postavljanje uživo: paket, prvi unos znanja i prvo pitanje</li>
-              <li>AI mozak agencije nakon par mjeseci: 300+ bilješki u radu</li>
-              <li>Google Meet, oko {AI_MOZAK.durationMin} minuta, snimka za sve prijavljene</li>
+              <li>Google Meet, {AI_MOZAK.trajanje} minuta, snimka za sve prijavljene</li>
             </ul>
-            <AiMozakSpots />
             <div className="from">
               Predavači iz <b>Fraviz Studio</b> / <b>SEO LICK</b>
             </div>
+            <AiMozakSpots />
           </div>
           <AiMozakForm />
         </div>
       </header>
 
-      {/* === PISMO (uvod u prvom licu) === */}
-      <section className="sec letter-sec">
+      {/* === ZAMISLI === */}
+      <section className="sec">
         <div className="wrap">
-          <div className="letter">
-            <div className="letter-head">
-              <Image src="/predavaci/ivan-radica.webp" alt="Ivan Radica" width={56} height={56} />
-              <span className="kicker">{"// Bok, Ivan ovdje"}</span>
-            </div>
-            <p>AI nije nešto što tek dolazi. Već je tu. A većina ga koristi isto kao prvi dan: otvori novi chat i krene od nule.</p>
-            <p>Objasniš tko si. Objasniš klijenta. Objasniš kako pišeš. Sutra opet.</p>
-            <p>Za to vrijeme netko u tvojoj branši to je zapisao jednom. Njegov AI zna posao prije nego ga išta pita.</p>
-            <p className="beat">Nije stvar u boljem promptu.<br />Ni u novom alatu.<br /><span className="lime">Stvar je u kontekstu.</span></p>
-            <p>Zato u srijedu {AI_MOZAK.datum} u {AI_MOZAK.sat} uživo pokazujem kako se postavlja AI mozak.</p>
+          <h2>Zamisli da imaš tim koji radi 24/7.</h2>
+          <div className="imagine">
+            {ZAMISLI.map((z, i) => (
+              <div className="im" key={z.h}>
+                <span className="n">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{z.h}</h3>
+                <p>{z.p}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* === MARQUEE === */}
-      <div className="marquee" aria-hidden="true">
-        <div className="track">
-          {[...MARQUEE, ...MARQUEE].map((m, i) => (
-            <span key={i} style={{ display: "inline-flex", gap: 34 }}>
-              <span>{m}</span>
-              <span className="s">✦</span>
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* === PROBLEM === */}
       <section className="sec">
@@ -182,48 +172,41 @@ export default function AiMozakPage() {
       {/* === CONTEXT ENGINEERING === */}
       <section className="sec">
         <div className="wrap">
-          <span className="kicker">{"// Context engineering"}</span>
-          <h2>Najbolji prompt ne pomaže ako AI nema kontekst.</h2>
+          <span className="kicker">{"// Rješenje: context engineering"}</span>
+          <h2>Najbolji agent ne pomaže ako AI nema kontekst.</h2>
           <div className="versus">
             <div className="vs">
-              <span className="tag">Prompt engineering</span>
-              <h3>Kako pitaš.</h3>
-              <ul><li>duži prompt</li><li>više uputa</li><li>„ponašaj se kao stručnjak za…“</li></ul>
+              <span className="tag">Bez AI mozga</span>
+              <h3>Svaki agent kreće od nule.</h3>
+              <ul><li>u svakom chatu objašnjavaš tko si</li><li>svaki agent zna nešto drugo</li><li>promijeniš alat i počinješ ispočetka</li></ul>
             </div>
             <div className="vs">
-              <span className="tag">Context engineering</span>
-              <h3>Što AI zna prije nego pitaš.</h3>
+              <span className="tag">S AI mozgom</span>
+              <h3>Svi agenti znaju tvoj posao.</h3>
               <ul><li>tko si i čime se baviš</li><li>tvoji klijenti, projekti i odluke</li><li>kako pišeš i što nikad ne radiš</li></ul>
             </div>
           </div>
+          <p className="lead-in">Ne radimo to samo mi. <span className="lime">Tako rade i najveći u AI-ju.</span></p>
           <div className="quote">
             <span className="q">“</span>
             <div>
-              <blockquote>Context engineering je umijeće popunjavanja AI-jevog konteksta točno onim informacijama koje trebaju za sljedeći korak.</blockquote>
-              <cite>Andrej Karpathy · slobodan prijevod</cite>
+              <blockquote>Context engineering je umijeće popunjavanja AI‑jevog konteksta točno onim informacijama koje trebaju za sljedeći korak.</blockquote>
+              <cite>Andrej Karpathy · suosnivač OpenAI-ja · slobodan prijevod</cite>
             </div>
           </div>
-          <p className="brainline">
-            <b>AI mozak je context engineering za tvoj posao.</b> To je folder s tvojim znanjem koji AI pročita prije svakog zadatka: obični tekstualni fileovi na tvom laptopu, a ne znanje zaključano u jednoj aplikaciji.
-          </p>
-        </div>
-      </section>
-
-      {/* === ZAMISLI === */}
-      <section className="sec">
-        <div className="wrap">
-          <span className="kicker">{"// Zamisli"}</span>
-          <h2>Zamisli da imaš:</h2>
-          <div className="imagine">
-            {ZAMISLI.map((z, i) => (
-              <div className="im" key={z}>
-                <span className="n">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{z}</h3>
+          <div className="voices">
+            {GLASOVI.map((g) => (
+              <div className="voice" key={g.ime}>
+                <b>{g.ime}</b>
+                <span>{g.uloga}</span>
+                <p>{g.p}</p>
               </div>
             ))}
           </div>
-          <p className="verdict">To nije novi zaposlenik. <span className="lime">To je AI koji prije svakog zadatka pročita tvoj mozak.</span></p>
-          <p className="sub">Pamti samo ono što zapišeš. Zato ti pokazujemo kako ga postaviti.</p>
+          <div className="statement">
+            <h3>AI mozak je <span className="lime">context engineering za tvoj posao.</span></h3>
+            <p>Folder s tvojim znanjem koji AI pročita prije svakog zadatka: obični tekstualni fileovi, a ne znanje zaključano u jednoj aplikaciji. Isti mozak čitaju svi agenti, zato rade kao tim, a ne kao četiri prazna chata.</p>
+          </div>
         </div>
       </section>
 
@@ -250,17 +233,17 @@ export default function AiMozakPage() {
             <div className="box yes">
               <h3 className="lime">DA, AKO SI</h3>
               <ul>
-                <li>poduzetnik ili vlasnik agencije koji AI koristi svaki dan</li>
-                <li>konzultant, freelancer ili trener koji radi s puno znanja</li>
-                <li>dio marketing tima koji brand objašnjava iznova u svakom chatu</li>
-                <li>netko kome je dosta kopiranja konteksta u svaki razgovor</li>
+                <li>poduzetnik ili vlasnik firme</li>
+                <li>konzultant, freelancer ili trener</li>
+                <li>dio marketing tima unutar brenda</li>
+                <li>netko tko želi iskoristiti potencijal AI-ja</li>
               </ul>
             </div>
             <div className="box no">
               <h3 style={{ color: "var(--hot)" }}>NE, AKO</h3>
               <ul>
-                <li>tražiš čarobni gumb bez ikakvog rada</li>
-                <li>ne želiš ništa zapisivati, jer AI mozak radi samo kad ga puniš</li>
+                <li>te AI ne zanima</li>
+                <li>ne želiš isprobavati nove stvari</li>
               </ul>
             </div>
           </div>
@@ -315,9 +298,9 @@ export default function AiMozakPage() {
         <div className="wrap">
           <span className="kicker">{`// ${TERMIN}`}</span>
           <h2>
-            Svaki novi chat počinje od nule. <span className="lime">Tvoj AI mozak ne mora.</span>
+            Neka AI agenti rade umjesto tebe. <span className="lime">Probaj AI mozak.</span>
           </h2>
-          <p>Imaš dva puta. Nastaviti kao dosad: novi chat, isti kontekst, opet od nule. Ili jednom zapisati što AI treba znati i pustiti ga da radi s tobom.</p>
+          <p>Ponuda gotova s mobitela, mailovi spremni u draftu, inbox pod kontrolom. To su sati i sati rada i živaca manje. A kad oslobodiš vrijeme i glavu, postaješ efikasniji i radiš ono što si oduvijek htio, umjesto da se gubiš u moru administracije.</p>
           <a className="btn" href="#prijava" style={{ fontSize: 17, padding: "17px 28px" }}>
             Rezerviraj mjesto →
           </a>

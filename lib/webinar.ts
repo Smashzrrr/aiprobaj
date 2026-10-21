@@ -36,13 +36,15 @@ export const AI_MOZAK = {
   dan: "Srijeda",
   datum: "28.10.",
   sat: "18:00",
-  durationMin: 60,
+  // Planirano 60, moguće produženje: u tekstu piše trajanje, endDate računa s maksimumom.
+  durationMin: 90,
+  trajanje: "60-90",
   // Besplatna konzultacija: termin se rezervira do ovog roka (24 h nakon webinara).
   konzultacijaDo: "četvrtka 29.10. u 19:00",
-  // Brojac na /ai-mozak: skala 1-500. Broji prijave s izvorom "ai-mozak" plus
+  // Brojac na /ai-mozak: skala 1-150. Broji prijave s izvorom "ai-mozak" plus
   // listu cekanja (izvor "waitlist") od 22.07. 17:00, prije toga su pozvani na prvi webinar (22 na 15.10.). Email je u bazi
   // jedinstven, pa ponovna prijava s /ai-mozak samo prebaci izvor i ne duplira.
-  spotsTotal: 500,
+  spotsTotal: 150,
   waitlistFromISO: "2026-07-22T17:00:00+02:00",
 } as const;
 

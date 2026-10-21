@@ -9,7 +9,7 @@ interface Mjesta {
 }
 
 // Brojac za /ai-mozak, isti izgled kao "urgency" brojac na glavnoj stranici:
-// "Rezervirano mjesta X / 500" + traka. Stil u ai-mozak.css (.am .spots*).
+// "Rezervirano mjesta X / 150" + traka. Stil u ai-mozak.css (.am .spots*).
 export default function AiMozakSpots() {
   const [m, setM] = useState<Mjesta | null>(null);
 
@@ -35,7 +35,7 @@ export default function AiMozakSpots() {
   }, []);
 
   // Dok broj nije ucitan (ili baza ne odgovara) ne prikazujemo nista,
-  // da se ne vidi lazno "0 / 500".
+  // da se ne vidi lazno "0 / 150".
   if (!m) return null;
 
   const pct = m.total > 0 ? Math.min(100, Math.round((m.taken / m.total) * 100)) : 0;
