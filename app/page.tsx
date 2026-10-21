@@ -106,7 +106,20 @@ export default function Page() {
             <span style={{ color: "var(--ink-dim)", fontWeight: 500 }}>.com</span>
           </a>
 
-          {/* Desktop nav links — hidden below 720px via CSS class */}
+          {/* Promo traka za AI mozak webinar; inace desktop linkovi */}
+          {PROMO ? (
+            <a
+              href={PROMO_HREF}
+              className="desktop-nav-links"
+              style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", fontSize: 14.5 }}
+            >
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 0 4px rgba(198,255,58,.15)" }} />
+              <b style={{ color: "var(--ink)", fontWeight: 600 }}>Izgradi AI mozak</b>
+              <span style={{ fontFamily: MONO, fontSize: 13, letterSpacing: "0.04em", color: "var(--accent)" }}>
+                {AI_MOZAK.dan} {AI_MOZAK.datum} u {AI_MOZAK.sat}
+              </span>
+            </a>
+          ) : (
           <div
             className="desktop-nav-links"
             style={{ display: "flex", alignItems: "center", gap: 26 }}
@@ -127,6 +140,7 @@ export default function Page() {
               </a>
             ))}
           </div>
+          )}
 
           {/* Right side: CTA + mobile hamburger */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
