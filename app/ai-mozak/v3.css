@@ -525,7 +525,11 @@
 .am3 .get p { color: var(--mute); font-size: 16px; line-height: 1.5; margin: 0; }
 
 .am3 .cta2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
-.am3 .card { border: 1.5px solid var(--line); border-radius: 24px; padding: 40px; }
+.am3 .card { border: 1.5px solid var(--line); border-radius: 24px; padding: 40px; min-width: 0; }
+.am3 .vs > div,
+.am3 .x3 > div,
+.am3 .get > div,
+.am3 .team > div { min-width: 0; }
 .am3 .card.on {
   border-color: rgba(198, 255, 58, 0.5);
   background: linear-gradient(160deg, rgba(198, 255, 58, 0.08), transparent 60%);
@@ -538,6 +542,7 @@
   font-size: 18px;
   color: var(--lime);
   margin: 22px 0;
+  overflow-wrap: anywhere;
 }
 .am3 .note {
   font-family: var(--font-mono), "Space Mono", ui-monospace, monospace;
@@ -706,6 +711,13 @@
   .am3 .ph { width: 100%; }
   .am3 .spon h2 { font-size: 40px; }
   .am3 .diag .b { font-size: 28px; }
+  .am3 .card { padding: 28px 22px; }
+}
+
+@media (max-width: 480px) {
+  .am3 .signup { padding: 24px 18px; }
+  .am3 .signup .lv { flex-direction: column; }
+  .am3 .signup .lv button { width: 100%; flex: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
