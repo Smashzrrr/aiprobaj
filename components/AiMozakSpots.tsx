@@ -8,8 +8,9 @@ interface Mjesta {
   left: number;
 }
 
-// Brojac za /ai-mozak, isti izgled kao "urgency" brojac na glavnoj stranici:
-// "Rezervirano mjesta X / 500" + traka. Stil u ai-mozak.css (.am .spots*).
+// Brojac za /ai-mozak. Brojevi dolaze samo s /api/mjesta-ai-mozak (live).
+// Tekst: "Rezervirano mjesta X / total" i "Y mjesta još slobodno".
+// Stil: app/ai-mozak/v3.css (.am3 .spots*). Dok odgovor ne stigne, nista se ne crta.
 export default function AiMozakSpots() {
   const [m, setM] = useState<Mjesta | null>(null);
 
