@@ -11,9 +11,8 @@ export const KONZULTACIJA_CAL_URL = "";
 
 // Zajednicka navigacija: naslovnica (desktop i mobilni izbornik) i footer.
 // Interni linkovi bez UTM-a (UTM na internom linku prekida sesiju u analitici).
+// /skool i /konzultacija su skriveni do webinara 28.10.: bez linkova s weba [Ivan, 21.10.].
 export const SITE_NAV = [
   { href: "/ai-mozak", label: "Webinar" },
-  { href: "/skool", label: "Skool zajednica" },
-  { href: "/konzultacija", label: "Konzultacija" },
   { href: "/#faq", label: "FAQ" },
 ] as const;

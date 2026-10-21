@@ -154,14 +154,12 @@ export const TRI_PUTA = [
     title: "Skool zajednica: postavi ga sam",
     desc: "Paket i upute korak po korak, uz pitanja drugih polaznika.",
     time: "besplatno",
-    href: "/skool",
   },
   {
     t: "03",
     title: "Konzultacija: postavimo ga s tobom",
     desc: "30 minuta o tvom poslu i što AI mozak može preuzeti. Besplatno za polaznike webinara.",
     time: "s nama",
-    href: "/konzultacija",
   },
 ] as const;
 
@@ -172,7 +170,8 @@ export const STATS = [
   { n: "0 €", l: "cijena webinara" },
 ] as const;
 
-export const FAQ = [
+// href/link su opcionalni: pitanje može voditi na podstranicu.
+export const FAQ: { q: string; a: string; href?: string; link?: string }[] = [
   {
     q: "Trebam li ikakvo predznanje?",
     a: "Ne. Krećemo od nule i idemo sve do naprednih tehnika, korak po korak.",
@@ -200,16 +199,12 @@ export const FAQ = [
   {
     q: "Gdje mogu učiti sam, između webinara?",
     a: "U besplatnoj Skool zajednici: lekcije korak po korak i pitanja drugih polaznika.",
-    href: "/skool",
-    link: "Skool zajednica",
   },
   {
     q: "Možete li mi vi postaviti AI mozak?",
     a: "Da. Polaznici webinara dobivaju besplatnu konzultaciju od 30 minuta: pogledamo tvoj posao i kažemo što ima smisla spojiti.",
-    href: "/konzultacija",
-    link: "Besplatna AI konzultacija",
   },
-] as const;
+];
 
 export const MARQUEE_ITEMS = [
   "AI OSNOVE",

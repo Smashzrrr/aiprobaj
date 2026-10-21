@@ -17,18 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-10-10"),
     },
     {
-      url: `${SITE}/konzultacija`,
-      changeFrequency: "weekly",
-      priority: 0.6,
-      lastModified: new Date("2026-10-15"),
-    },
-    {
-      url: `${SITE}/skool`,
-      changeFrequency: "monthly",
-      priority: 0.6,
-      lastModified: new Date("2026-10-15"),
-    },
-    {
       url: `${SITE}/privatnost`,
       changeFrequency: "yearly",
       priority: 0.3,

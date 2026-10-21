@@ -1619,7 +1619,7 @@ export default function Page() {
                   }}
                 >
                   {item.a}
-                  {"href" in item && (
+                  {item.href && (
                     <>
                       {" "}
                       <a href={item.href} style={{ color: "var(--accent)" }}>

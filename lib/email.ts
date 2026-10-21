@@ -110,7 +110,6 @@ export async function sendPrijavaPotvrda(
       <h2 style="color:#0a0a0a;">Mjesto je tvoje, ${esc(ime)}!</h2>
       <p style="font-size:15px;line-height:1.6;color:#333;">Tvoje mjesto na webinaru <b>${AI_MOZAK.naziv}</b> je rezervirano: ${AI_MOZAK.dan.toLowerCase()} ${AI_MOZAK.datum} u ${AI_MOZAK.sat}, na Google Meetu, ${AI_MOZAK.trajanje} minuta.</p>
       <p style="font-size:15px;line-height:1.6;color:#333;">Link za webinar šaljemo na ovaj email prije početka. Snimku, paket i upute dobivaju svi prijavljeni, čak i ako ne mogu pratiti uživo.</p>
-      <p style="font-size:15px;line-height:1.6;color:#333;">Dok čekaš, pridruži se <a href="${SITE}/skool" style="color:#0a0a0a;">Skool zajednici</a>: tamo su upute korak po korak.</p>
       <p style="font-size:13px;color:#888;">Ako se nisi ti prijavio/la, slobodno ignoriraj ovaj email.</p>
       <p style="font-size:13px;color:#888;">aiprobaj.com &middot; Fraviz Studio x SEO LICK</p>
     </div>`;

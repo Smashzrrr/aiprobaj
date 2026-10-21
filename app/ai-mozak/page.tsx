@@ -59,12 +59,12 @@ const FAQ: [string, string, string?, string?][] = [
   ["Koliko vremena traži?", "Postavljanje oko sat vremena, prvi unos znanja pola sata. Poslije toga par minuta ujutro i par minuta navečer."],
   ["Trebam li znati programirati?", "Ne. Sve što pokazujemo radi se klikom i kopiranjem teksta."],
   ["Gdje se održava?", "Online, na Google Meetu. Link ti stiže mailom prije početka."],
-  ["Moram li išta instalirati prije webinara?", "Ne. Na webinaru samo gledaš. Upute za postavljanje dobiješ poslije, u Skool zajednici.", "/skool", "Skool zajednica"],
+  ["Moram li išta instalirati prije webinara?", "Ne. Na webinaru samo gledaš. Upute za postavljanje dobiješ poslije, u Skool zajednici."],
   ["Što mi treba za vlastiti AI mozak?", "Laptop (Mac ili Windows) i Claude Pro, 20 USD mjesečno. VS Code i Obsidian su besplatni."],
   ["Mogu li umjesto Claudea koristiti ChatGPT?", "Paket je napravljen za Claude Code. Bilješke su obični tekstualni fileovi pa ih može čitati bilo koji AI, ali naredbe su pisane za Claude."],
   ["Je li webinar besplatan?", "Da. Konzultacija za polaznike je također besplatna."],
   ["Što je s privatnošću?", "Mozak živi na tvom laptopu. Ono što AI pročita šalje se na obradu, zato pokazujemo što u mozak ide, a što ne."],
-  ["Možete li mi vi postaviti AI mozak?", "Da. O tome je besplatna konzultacija za polaznike: pogledamo tvoj posao i kažemo što ima smisla spojiti.", "/konzultacija", "Besplatna AI konzultacija"],
+  ["Možete li mi vi postaviti AI mozak?", "Da. O tome je besplatna konzultacija za polaznike: pogledamo tvoj posao i kažemo što ima smisla spojiti."],
   ["Što ako ne stignem uživo?", "Prijavi se svejedno. Snimka i upute stižu ti na mail."],
 ];
 
@@ -101,8 +101,6 @@ export default function AiMozakPage() {
             <span className="ai">ai</span>probaj<span className="com">.com</span>
           </Link>
           <div className="navlinks">
-            <Link href="/skool">Skool zajednica</Link>
-            <Link href="/konzultacija">Konzultacija</Link>
             <a href="#predavaci">Predavači</a>
             <a href="#faq">FAQ</a>
           </div>
@@ -218,8 +216,8 @@ export default function AiMozakPage() {
           <div className="gets">
             <div className="get"><span className="ic">[ paket ]</span><h3>Paket AI mozga</h3><p>Struktura, pravila i 7 naredbi. Stiže nakon webinara.</p></div>
             <div className="get"><span className="ic">[ snimka ]</span><h3>Snimka webinara</h3><p>Stiže svim prijavljenima. Ne moraš stići uživo.</p></div>
-            <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u <Link href="/skool">Skool zajednici</Link>: postavljanje, unos znanja i automatski ritam.</p></div>
-            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. <Link href="/konzultacija">Termin rezerviraš</Link> do {AI_MOZAK.konzultacijaDo}, dan nakon webinara.</p></div>
+            <div className="get"><span className="ic">[ lekcije ]</span><h3>Upute korak po korak</h3><p>Pisane lekcije u Skool zajednici: postavljanje, unos znanja i automatski ritam.</p></div>
+            <div className="get hot"><span className="ic">samo za polaznike</span><h3>Besplatna AI konzultacija, 30 min</h3><p>Inače 100 € po satu. Pogledamo tvoj posao i kažemo što AI mozak može preuzeti. Termin rezerviraš do {AI_MOZAK.konzultacijaDo}, dan nakon webinara.</p></div>
           </div>
         </div>
       </section>

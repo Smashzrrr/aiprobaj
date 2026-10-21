@@ -66,7 +66,7 @@ export default function AiMozakForm() {
             {AI_MOZAK.dan.toLowerCase()} {AI_MOZAK.datum} u {AI_MOZAK.sat}.
           </p>
           <p>
-            Dok čekaš: pridruži se <a href="/skool">Skool zajednici</a>. Tamo su upute i paket nakon webinara.
+            Paket i upute korak po korak dobivaš nakon webinara, u Skool zajednici.
           </p>
         </div>
       </div>
