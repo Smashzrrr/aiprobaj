@@ -9,7 +9,7 @@ import "../ai-mozak/ai-mozak.css";
 export const metadata: Metadata = {
   title: "AIprobaj Skool zajednica: postavi AI mozak sam | aiprobaj.com",
   description:
-    "Besplatna zajednica: paket AI mozga sa 7 naredbi, lekcije korak po korak i pitanja zajednici. Postavi AI koji zna tvoj posao.",
+    "Besplatna zajednica: paket AI mozga, lekcije korak po korak i pitanja zajednici. Postavi AI koji zna tvoj posao, svojim tempom.",
   alternates: { canonical: "/skool" },
 };
 
@@ -17,16 +17,16 @@ const SKOOL = `${SKOOL_URL}?utm_source=aiprobaj&utm_medium=landing&utm_campaign=
 
 const UNUTRA = [
   { n: "01", h: "Paket AI mozga", p: "Gotova struktura, pravila i 7 naredbi. Skineš, otvoriš u VS Codeu i Obsidianu i kreneš.", c: ["Struktura", "7 naredbi"] },
-  { n: "02", h: "Tri lekcije korak po korak", p: "Postavljanje, unos znanja i automatski ritam: jutarnji brief i zatvaranje dana.", c: ["Postavljanje", "Unos znanja", "Ritam"] },
+  { n: "02", h: "Tri lekcije korak po korak", p: "Isti put kao na webinaru: složi mozak, skupi znanje u njega i daj agentu prvi posao, jutarnji brief i zatvaranje dana.", c: ["Složi mozak", "Skupi znanje", "Prvi posao"] },
   { n: "03", h: "Snimka webinara", p: `Cijeli webinar „${AI_MOZAK.naziv}“ (${AI_MOZAK.datum}), za gledanje kad stigneš.`, c: ["Nakon webinara"] },
   { n: "04", h: "Pitanja zajednici i nama", p: "Zapne li negdje, pitaš. Odgovaraju ljudi koji AI mozak koriste svaki dan.", c: ["Zajednica"] },
 ];
 
 const FAQ = [
   ["Je li stvarno besplatno?", "Da. Pridružuješ se besplatnim Skool računom."],
-  ["Što mi treba za vlastiti AI mozak?", "Laptop (Mac ili Windows) i Claude Pro, 20 USD mjesečno. VS Code i Obsidian su besplatni."],
+  ["Što mi treba za vlastiti AI mozak?", "Laptop (Mac ili Windows) i AI pretplata. Paket je složen za Claude (Claude Pro, 20 USD mjesečno), a VS Code i Obsidian su besplatni. Tvoje znanje je u običnim datotekama, pa ga kasnije možeš koristiti i s ChatGPT-om ili drugim alatom."],
   ["Trebam li znati programirati?", "Ne. Sve se radi klikom i kopiranjem teksta, a diktat je dovoljan."],
-  ["Što ako želim da ga postavite umjesto mene?", "Za to je besplatna 30-minutna konzultacija za polaznike webinara."],
+  ["Što ako želim da ga postavite umjesto mene?", `Prvi korak za oba puta je besplatna 30-minutna konzultacija, za sve prijavljene na webinar do ${AI_MOZAK.konzultacijaDo}.`],
 ];
 
 export default function SkoolPage() {
@@ -56,7 +56,7 @@ export default function SkoolPage() {
               Postavi <span className="lime">AI{" "}mozak</span> sam, korak po korak.
             </h1>
             <p className="lead">
-              Ne moraš ništa zapisivati s webinara. Paket, lekcije i pitanja čekaju te na jednom mjestu.
+              Ne moraš ništa zapisivati s webinara. Paket, lekcije i pitanja čekaju te na jednom mjestu. Svojim tempom, od prvog dokumenta do prvog posla koji predaš agentu.
             </p>
             <div style={{ marginTop: 30 }}>
               <a className="btn" href={SKOOL} target="_blank" rel="noopener" style={{ fontSize: 17, padding: "17px 28px" }}>
@@ -91,7 +91,7 @@ export default function SkoolPage() {
           <span className="kicker">{"// Zašto"}</span>
           <h2>Svaki novi chat počinje od nule. Tvoj AI mozak ne mora.</h2>
           <p className="brainline" style={{ marginTop: 28 }}>
-            <b>AI mozak je folder s tvojim znanjem koji AI pročita prije svakog zadatka.</b> Jednom zapišeš tko si, s kim radiš i kako pišeš, a AI to zna svaki put.
+            <b>AI mozak je folder s tvojim znanjem koji AI pročita prije svakog zadatka.</b> Jednom zapišeš tko si, s kim radiš i kako pišeš, a AI to zna svaki put. Alat se mijenja, mozak ostaje: znanje je u običnim datotekama, pa ga čita i sljedeći alat koji dođe.
           </p>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function SkoolPage() {
             Jednom zapiši. <span className="lime">AI zna svaki put.</span>
           </h2>
           <p>
-            Radije s nama? <Link href="/konzultacija" className="lime">Besplatna konzultacija za polaznike</Link>.
+            Radije s nama? Prvi korak za oba puta je <Link href="/konzultacija" className="lime">besplatna konzultacija</Link>, do {AI_MOZAK.konzultacijaDo}.
           </p>
           <a className="btn" href={SKOOL} target="_blank" rel="noopener" style={{ fontSize: 17, padding: "17px 28px" }}>
             Pridruži se na Skoolu →
