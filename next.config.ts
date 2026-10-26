@@ -24,8 +24,20 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [{ source: "/konzultacije", destination: "/konzultacija", permanent: true }];
   },
+  // Prezentacija webinara: statična stranica u public/webinar, skrivena (bez linka u izborniku, noindex)
+  async rewrites() {
+    return [{ source: "/webinar", destination: "/webinar/index.html" }];
+  },
   async headers() {
     return [
+      {
+        source: "/webinar/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/webinar",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
       {
         source: "/:path*",
         headers: [
