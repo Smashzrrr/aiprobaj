@@ -8,16 +8,16 @@ import "../ai-mozak/ai-mozak.css";
 // Kalendar: KONZULTACIJA_CAL_URL u lib/linkovi.ts (Google Calendar rezervacija termina).
 
 export const metadata: Metadata = {
-  title: "Besplatna AI konzultacija, 30 min | aiprobaj.com",
+  title: "Besplatna prva AI konzultacija, 30 min | aiprobaj.com",
   description:
-    "30 minuta, online: prođemo tvoj posao i okvirno izračunamo koliko vremena AI mozak može vratiti. Besplatno za sve prijavljene na webinar Izgradi AI mozak.",
+    "30 minuta, online: savjetujemo kako krenuti s AI mozgom i uvođenjem AI-ja u tvoj posao. Besplatno za sve prijavljene na webinar Izgradi AI mozak.",
   alternates: { canonical: "/konzultacija" },
 };
 
 const KORACI = [
   { n: "01", h: "Tvoj posao i alati", p: "Čime se baviš i što koristiš svaki dan: mail, kalendar, CRM, dokumenti, chat s AI-jem." },
-  { n: "02", h: "Okvirna računica uštede", p: "Zadaci koji se ponavljaju: koliko ti sad uzimaju, a koliko bi uz AI mozak. Prije i sad, kao na webinaru." },
-  { n: "03", h: "Što spojiti prvo", p: "Jedan konkretan prvi korak. Možeš ga napraviti sam ili s nama." },
+  { n: "02", h: "Gdje AI ima smisla", p: "Zadaci koji se ponavljaju i kontekst koji AI-ju objašnjavaš iznova. Gdje početi, a što može pričekati." },
+  { n: "03", h: "Kako krenuti", p: "Savjet za prvi korak s AI mozgom: što postaviti prvo i kojim redom. Možeš sam ili s nama." },
 ];
 
 const FAQ = [
@@ -50,10 +50,10 @@ export default function KonzultacijaPage() {
           <div>
             <span className="date-pill">
               <span className="dot" />
-              BESPLATNA AI KONZULTACIJA · 30 MIN · ONLINE
+              BESPLATNA PRVA AI KONZULTACIJA · 30 MIN · ONLINE
             </span>
             <h1>
-              Pogledajmo koliko vremena <span className="lime">AI{" "}mozak</span> može vratiti tvom poslu.
+              Kako da kreneš s <span className="lime">AI{" "}mozgom</span> u svom poslu.
             </h1>
             <p className="lead">
               30 minuta, online. Prođemo tvoj posao, alate i zadatke koji se ponavljaju i kažemo ti što ima smisla spojiti s AI mozgom, a što ne.
