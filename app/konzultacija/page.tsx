@@ -4,26 +4,28 @@ import { AI_MOZAK } from "@/lib/webinar";
 import { KONZULTACIJA_CAL_URL, SKOOL_URL } from "@/lib/linkovi";
 import "../ai-mozak/ai-mozak.css";
 
-// Besplatna 30-min AI konzultacija za polaznike webinara "Postavi AI mozak".
+// Besplatna 30-min AI konzultacija za sve prijavljene na webinar "Izgradi AI mozak" (prvi korak za oba puta: sam ili s nama).
 // Kalendar: KONZULTACIJA_CAL_URL u lib/linkovi.ts (Google Calendar rezervacija termina).
 
 export const metadata: Metadata = {
-  title: "Besplatna AI konzultacija, 30 min | aiprobaj.com",
+  title: "Besplatna prva AI konzultacija, 30 min | aiprobaj.com",
   description:
-    "30 minuta, online: prođemo tvoj posao i alate i kažemo što AI mozak može preuzeti. Besplatno za polaznike webinara Postavi AI mozak.",
+    "30 minuta, online: savjetujemo kako krenuti s AI mozgom i uvođenjem AI-ja u tvoj posao. Besplatno za sve prijavljene na webinar Izgradi AI mozak.",
   alternates: { canonical: "/konzultacija" },
 };
 
 const KORACI = [
   { n: "01", h: "Tvoj posao i alati", p: "Čime se baviš i što koristiš svaki dan: mail, kalendar, CRM, dokumenti, chat s AI-jem." },
-  { n: "02", h: "Gdje gubiš vrijeme", p: "Zadaci koji se ponavljaju i kontekst koji AI-ju objašnjavaš iznova." },
-  { n: "03", h: "Što spojiti prvo", p: "Jedan konkretan prvi korak. Možeš ga napraviti sam ili s nama." },
+  { n: "02", h: "Gdje AI ima smisla", p: "Zadaci koji se ponavljaju i kontekst koji AI-ju objašnjavaš iznova. Gdje početi, a što može pričekati." },
+  { n: "03", h: "Kako krenuti", p: "Savjet za prvi korak s AI mozgom: što postaviti prvo i kojim redom. Možeš sam ili s nama." },
 ];
 
 const FAQ = [
-  ["Je li stvarno besplatno?", `Da, za polaznike webinara koji termin rezerviraju do ${AI_MOZAK.konzultacijaDo}. Jedan termin po osobi. Inače konzultacije naplaćujemo 100 € po satu.`],
+  ["Je li stvarno besplatno?", `Da, za sve prijavljene na webinar, i one koji su gledali snimku, ako termin rezerviraju do ${AI_MOZAK.konzultacijaDo}. Jedan termin po osobi. Inače konzultacije naplaćujemo 100 € po satu.`],
   ["Moram li nešto pripremiti?", "Popis alata koje koristiš i dva ili tri zadatka koja ti uzimaju najviše vremena. Ništa više."],
   ["Hoćete li mi nešto prodavati?", "Reći ćemo ti što ima smisla napraviti sam, a što s nama. Odluka je tvoja."],
+  ["Koji AI alat mi treba?", "Bilo koji koji već koristiš. AI mozak su obične datoteke s tvojim znanjem, pa ih čita Claude, ChatGPT ili Grok. Alat se mijenja, mozak ostaje."],
+  ["Što je s mojim podacima?", "Lozinke, OIB i zdravstveni podaci ne idu u mozak. Agenti rade u nacrtima: ništa ne ide van bez tvog klika."],
   ["Gdje se održava?", "Online, preko Google Meeta. Link stiže u pozivnici kalendara."],
 ];
 
@@ -48,17 +50,20 @@ export default function KonzultacijaPage() {
           <div>
             <span className="date-pill">
               <span className="dot" />
-              BESPLATNA AI KONZULTACIJA · 30 MIN · ONLINE
+              BESPLATNA PRVA AI KONZULTACIJA · 30 MIN · ONLINE
             </span>
             <h1>
-              Pogledajmo što <span className="lime">AI{" "}mozak</span> može preuzeti u tvom poslu.
+              Kako da kreneš s <span className="lime">AI{" "}mozgom</span> u svom poslu.
             </h1>
             <p className="lead">
               30 minuta, online. Prođemo tvoj posao, alate i zadatke koji se ponavljaju i kažemo ti što ima smisla spojiti s AI mozgom, a što ne.
             </p>
+            <div className="chips" style={{ marginTop: 18 }}>
+              {["Marketing", "Ponude", "Inbox", "Izvještaji"].map((c) => <span className="chip" key={c}>{c}</span>)}
+            </div>
             <ul className="checks">
               <li>Inače 100 € po satu</li>
-              <li>Besplatno za polaznike webinara „{AI_MOZAK.naziv}“ ako termin rezerviraš do {AI_MOZAK.konzultacijaDo}, dan nakon webinara</li>
+              <li>Besplatno za sve prijavljene na webinar „{AI_MOZAK.naziv}“ ako termin rezerviraš do {AI_MOZAK.konzultacijaDo}, dan nakon webinara</li>
               <li>Jedan termin po osobi</li>
             </ul>
           </div>
@@ -123,14 +128,14 @@ export default function KonzultacijaPage() {
             </div>
             <div className="vs">
               <span className="tag">Put 2 · s nama</span>
-              <h3>Postavimo ga zajedno</h3>
+              <h3>Postavimo ga za tebe</h3>
               <ul>
-                <li>spajanje s alatima koje već koristiš</li>
-                <li>unos postojećih dokumenata</li>
-                <li>automatski ritam: brief i zatvaranje dana</li>
+                <li>AI mozak složen za tvoj posao</li>
+                <li>agenti spojeni na tvoje alate</li>
+                <li>naučimo tebe i tim kako se radi</li>
               </ul>
               <p style={{ marginTop: 22, fontSize: 20, fontWeight: 700 }}>
-                Osnovni setup od 300 € · napredni do 1.000 €
+                Opseg i cijenu dogovaramo na konzultaciji.
               </p>
             </div>
           </div>
@@ -158,7 +163,7 @@ export default function KonzultacijaPage() {
           <h2>
             Ne mogu odlučiti umjesto tebe. <span className="lime">Mogu ti pokazati što ima smisla.</span>
           </h2>
-          <p>Jedan razgovor, konkretan prvi korak. Bez obveze.</p>
+          <p>Jedan razgovor, konkretan prvi korak. Bez obveze. Besplatno do {AI_MOZAK.konzultacijaDo}.</p>
           <a className="btn" href="#termin" style={{ fontSize: 17, padding: "17px 28px" }}>
             Odaberi termin →
           </a>

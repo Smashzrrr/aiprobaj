@@ -30,7 +30,7 @@ export function isPast(now: number = Date.now()): boolean {
 // Ivan Radica i Bobi ne potvrde: promijeni ovdje, mijenja se i stranica i potvrda.
 export const AI_MOZAK = {
   slug: "ai-mozak",
-  naziv: "Postavi AI mozak",
+  naziv: "Izgradi AI mozak",
   // CET (+01:00): zimsko vrijeme krece 25.10.2026.
   dateISO: "2026-10-28T18:00:00+01:00",
   dan: "Srijeda",
